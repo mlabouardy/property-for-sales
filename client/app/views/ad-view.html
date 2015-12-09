@@ -1,0 +1,90 @@
+<div class="container-fluid">
+  <div class="col-md-9">
+    <div class="row classWithPad">
+      <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+          <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" >
+          <div class="item active">
+            <img src="http://c.visuels.poliris.com/bigs/c/4/c/9/c4c9ba70-46a6.jpg" width="100%"  height="150">
+          </div>
+          <div class="item">
+            <img src="http://c.visuels.poliris.com/bigs/c/4/c/9/c4c9ba70-46a6.jpg" width="100%"  height="150">
+          </div>
+        </div>
+
+        <!-- Controls -->
+        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right"></span>
+        </a>
+      </div> <!-- Carousel -->
+    </div>
+    <div class="row classWithPad">
+      <div class="panel panel-primary">
+        <div class="panel-heading">Description:</div>
+        <div class="panel-body">
+      <p>
+        Admiration we surrounded possession frequently he. Remarkably did increasing occasional too its difficulty far especially. Known tiled but sorry joy balls. Bed sudden manner indeed fat now feebly. Face do with in need of wife paid that be. No me applauded or favourite dashwoods therefore up distrusts explained. 
+      </p>
+    </div>
+    </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="row classWithPad">
+     <div class="panel panel-primary">
+      <div class="panel-heading">
+        Owner
+      </div>
+      <div class="panel-body">
+        <img class="img-circle" ng-src="http://images.neozone.org/2011/02/stormtrooper.jpg" width="40px"/>
+        {{advert.owner.firstName}} {{advert.owner.lastName}}<br/><br/>
+        <ul class="list-group">
+          <li class="list-group-item">
+            <i class="fa fa-envelope"></i> {{advert.owner.email}}
+          </li>
+          <li class="list-group-item">
+            <i class="fa fa-phone"></i> 0666325614
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="row classWithPad">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        Share advertisment
+      </div>
+      <div class="panel-body">
+        <div class="social-media">
+          <a href="http://twitter.com/share?url=<URL>&text=<TEXT>&via=<VIA>" target="_blank" class="share-btn twitter">
+            <i class="fa fa-twitter"></i>
+          </a>
+
+          <!-- Google Plus -->
+          <a href="https://plus.google.com/share?url=<BTN>" target="_blank" class="share-btn google-plus">
+            <i class="fa fa-google-plus"></i>
+          </a>
+
+          <!-- Facebook -->
+          <a href="http://www.facebook.com/sharer/sharer.php?u=<URL>" target="_blank" class="share-btn facebook">
+            <i class="fa fa-facebook"></i>
+          </a>
+
+          <a href="mailto:?subject=<SUBJECT&body=<BODY>" target="_blank" class="share-btn email">
+            <i class="fa fa-envelope"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
