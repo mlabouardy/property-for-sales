@@ -16,4 +16,6 @@ public interface UserBean {
 	public User findById(int id);
 	
 	public List<User> getUsers();
+
+	public User getUserById(int id);
 }

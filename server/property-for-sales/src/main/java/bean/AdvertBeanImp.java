@@ -31,4 +31,11 @@ public class AdvertBeanImp implements AdvertBean{
 		return em.find(Advert.class, id);
 	}
 
+	@Override
+	public List<Advert> getAdvertsByUserId(int id) {
+		Query query=em.createQuery("SELECT a FROM Advert a WHERE a.owner.id=:id");
+		query.setParameter("id", id);
+		return query.getResultList();
+	}
+
 }

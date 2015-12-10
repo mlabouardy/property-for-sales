@@ -9,13 +9,16 @@
  */
 angular.module('clientApp')
   .service('Adverts', function ($http) {
-    var baseUrl='http://localhost:8080/property-for-sales/adverts';
+    var baseUrl='http://localhost:8080/property-for-sales/';
   	return{
   		getAdverts:function(){
-  			return $http.get(baseUrl);
+  			return $http.get(baseUrl+'adverts');
   		},
   		findById:function(id){
-  			return $http.get(baseUrl+'/'+id);
-  		}
+  			return $http.get(baseUrl+'adverts/'+id);
+  		},
+      getAdvertsByUserId:function(user_id){
+        return $http.get(baseUrl+'user/'+user_id+'/adverts');
+      } 
   	};
   });

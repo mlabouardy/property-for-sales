@@ -39,4 +39,6 @@ public class UserCtrl {
 		user.setRole(role);
 		userBean.create(user);
 	}
+	
+	
 }

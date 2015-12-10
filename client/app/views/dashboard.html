@@ -15,7 +15,7 @@
 					<tr ng-repeat="user in users">
 						<td>{{user.firstName}} {{user.lastName}}</td>
 						<td>{{user.email}}</td>
-						<td><a class="btn btn-primary btn-xs" href="#/view">View</a></td>
+						<td><a class="btn btn-primary btn-xs" href="#/user/{{user.id}}/adverts">View</a></td>
 						<td><a class="btn btn-danger btn-xs" href="#/delete">Delete</a></td>
 					</tr>
 				</tbody>

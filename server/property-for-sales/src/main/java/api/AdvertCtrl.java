@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import bean.AdvertBean;
+import bean.UserBean;
 import model.Advert;
+import model.User;
 
 @RestController
 public class AdvertCtrl {
@@ -26,6 +28,11 @@ public class AdvertCtrl {
 	@RequestMapping(value="/adverts/{id}", method=RequestMethod.GET, produces="application/json")
 	public Advert getAdvert(@PathVariable int id){
 		return advertBean.findById(id);
+	}
+	
+	@RequestMapping(value="/user/{id}/adverts", method=RequestMethod.GET, produces="application/json")
+	public List<Advert> getUserAdverts(@PathVariable int id){
+		return advertBean.getAdvertsByUserId(id);
 	}
 	
 

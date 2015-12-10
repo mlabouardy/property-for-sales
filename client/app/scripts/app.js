@@ -54,6 +54,11 @@ angular
         controller: 'ProfileCtrl',
         controllerAs: 'profile'
       })
+      .when('/user/:id/adverts', {
+        templateUrl: 'views/user-adverts.html',
+        controller: 'UserAdvertsCtrl',
+        controllerAs: 'userAdverts'
+      })
       .otherwise({
         redirectTo: '/'
       });

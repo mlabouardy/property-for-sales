@@ -1,0 +1,23 @@
+<div class="container-fluid">
+	<div class="panel panel-primary">
+		<div class="panel-heading">User Advertisments</div>
+		<div class="panel-body">
+			<div ng-repeat="advert in adverts">
+			<div class="row advert">
+				<div class="col-md-3">
+					<img ng-src="{{advert.pictures[0].link}}" width="250" height="150"><br/>
+					<span class="badge">{{advert.pictures.length}}</span>
+				</div>
+				<div class="col-md-6">
+					<h5><a ng-href="#/ad-view/{{advert.id}}">Appartement 1 pièce, {{advert.location}}</a></h5>
+					<small>TALENCE - Rue Frédéric Sévène Charmant T1 d'une surface de...</small>
+				</div>
+				<div class="col-md-3">
+					<div class="price"><i class="fa fa-money"></i> {{advert.price}} $</div>
+					<div class="surface">{{advert.surface}} m<sup>2</sup></div>
+				</div>
+			</div><br/>
+		</div>
+		</div>
+	</div>
+</div>

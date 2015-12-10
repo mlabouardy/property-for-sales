@@ -34,5 +34,10 @@ public class UserBeanImp implements UserBean{
 		Query query=em.createQuery(SELECT_USERS);
 		return query.getResultList();
 	}
+
+	@Override
+	public User getUserById(int id) {
+		return em.find(User.class, id);
+	}
 	
 }
