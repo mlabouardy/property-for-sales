@@ -1,6 +1,11 @@
 <div class="container">
 <div class="panel panel-primary">
 	<div class="panel-body">
+		<div ng-if="error != undefined">
+			<div class="alert alert-danger" role="alert">
+				Registration Failed
+			</div>
+		</div>
 		<form>
 			<div class="form-group">
 				<label for="email">First name</label>
