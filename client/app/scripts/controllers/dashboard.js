@@ -8,13 +8,12 @@
  * Controller of the clientApp
  */
 angular.module('clientApp')
-  .controller('DashboardCtrl', function (Authentication, $location, User) {
+  .controller('DashboardCtrl', function (Authentication, $location, $scope, User) {
     if(!Authentication.isConnected()){
     	$location.path('/login');
     }else{
-    	console.log('hello');
     	User.getUsers().success(function(data){
-    		console.log(data);
+    		$scope.users=data;
     	});
     }
   });
