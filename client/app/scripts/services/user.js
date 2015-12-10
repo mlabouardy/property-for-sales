@@ -9,7 +9,7 @@
  */
 angular.module('clientApp')
   .service('User', function ($http) {
-    var baseUrl='http://localhost:8080/property-for-sales/user/create';
+    var baseUrl='http://localhost:8080/property-for-sales/';
 
     return{
     	register:function(fname, lname, em, pass){
@@ -21,8 +21,10 @@ angular.module('clientApp')
     			address: "",
     			phone: ""
     		};
-    		console.log(JSON.stringify(data));
-    		return $http.post(baseUrl,data);
-    	}
+    		return $http.post(baseUrl+'user/create',data);
+    	},
+        getUsers:function(){
+            return $http.get(baseUrl+'api/users');
+        }
     }
   });
