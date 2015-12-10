@@ -11,7 +11,8 @@ angular.module('clientApp')
   .service('Authentication', function ($cookieStore, $http) {
 
   	var baseUrl='http://localhost:8080/property-for-sales/api/login';
-  	var connected=false
+  	var connected=false;
+    var role;
 
   	return{
   		login:function(){
@@ -24,8 +25,9 @@ angular.module('clientApp')
 	    	$http.defaults.headers.common['Authorization'] = 'Basic'; 
 	    	connected=false;
   		},
-  		connectionSuccess:function(){
+  		connectionSuccess:function(type){
   			connected=true;
+        role=type;
   		},
   		isConnected:function(){
   			return connected;

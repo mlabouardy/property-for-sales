@@ -49,6 +49,14 @@ public class InitService {
 		user.setRole(role_user);
 		userBean.create(user);
 		
+		User user2=new User();
+		user2.setFirstName("Admin");
+		user2.setLastName("Admin");
+		user2.setEmail("admin@labouardy.com");
+		user2.setPassword("admin");
+		user2.setRole(role_admin);
+		userBean.create(user2);
+		
 		Picture picture=new Picture();
 		picture.setLink("http://c.visuels.poliris.com/bigs/c/4/c/9/c4c9ba70-46a6.jpg");
 		pictureBean.create(picture);

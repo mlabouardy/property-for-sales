@@ -21,11 +21,8 @@ public class Role {
 	@Column(unique=true)
 	private String name;
 	
-	@OneToMany
-	private List<User> users;
 	
 	public Role(){
-		users=new ArrayList<>();
 	}
 
 	public int getId() {
@@ -43,14 +40,5 @@ public class Role {
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	public List<User> getUsers() {
-		return users;
-	}
-
-	public void setUsers(List<User> users) {
-		this.users = users;
-	}
-	
 	
 }

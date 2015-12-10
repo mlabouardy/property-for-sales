@@ -15,7 +15,7 @@
  			$cookieStore.put('authdata',authdata);
  			Authentication.login()
  			.success(function(data){
- 				Authentication.connectionSuccess();
+ 				Authentication.connectionSuccess(data.name);
  				$location.path("dashboard");
  			})
  			.error(function(data, status, headers, config){
