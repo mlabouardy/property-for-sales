@@ -1,25 +1,99 @@
 <div class="container-fluid">
-	<div class="panel panel-primary">
-		<div class="panel-heading">List of users</div>
-		<div class="panel-body">
-			<table class="table table-hover table-bordered">
-				<thead>
-					<tr>
-						<th>Name</th>
-						<th>Email</th>
-						<th>Adverts</th>
-						<th>Options</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr ng-repeat="user in users">
-						<td>{{user.firstName}} {{user.lastName}}</td>
-						<td>{{user.email}}</td>
-						<td><a class="btn btn-primary btn-xs" href="#/user/{{user.id}}/adverts">View</a></td>
-						<td><a class="btn btn-danger btn-xs" href="#/delete">Delete</a></td>
-					</tr>
-				</tbody>
-			</table>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-primary">
+				<div class="panel-heading">Create advertisment</div>
+				<div class="panel-body">
+					<form>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Type:</label>
+								<input type="text" ng-model="type" class="form-control">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Surface:</label>
+								<input type="text" ng-model="type" class="form-control">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Price:</label>
+								<input type="text" ng-model="type" class="form-control">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Location:</label>
+								<input type="text" ng-model="type" class="form-control">
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="form-group">
+								<label>Description:</label>
+								<textarea rows="4" class="form-control"></textarea>
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="row">
+								<div class="col-md-3">
+									<input type="file" name="file" file-model="img1" class="btn btn-primary"accept="image/*">
+								</div>
+								<div class="col-md-3">
+									<button ng-click="upload(img1)" class="btn btn-success">Upload </button>
+								</div> 
+								<div ng-if="file_upload_error != undefined">
+									<div class="col-md-6">
+										<div class="alert alert-danger">{{file_upload_error}}</div>
+									</div>
+								</div>
+							</div><br/>
+						</div>
+						<div class="col-md-12">
+							<div class="form-group">	
+								Pictures uploaded: {{files.length}}
+							</div>
+						</div>
+						<div class="col-md-12">
+							<input type="submit" class="btn btn-success btn-block" value="Create">
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-primary">
+				<div class="panel-heading">List of advertisment</div>
+				<div class="panel-body">
+					<div ng-repeat="advert in adverts">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="button-group pull-right">
+									<a class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i> Edit</a>
+									<a class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Remove</a>
+								</div>
+							</div>
+						</div><br/>
+						<div class="row advert">
+							<div class="col-md-3">
+								<img ng-src="{{advert.pictures[0].link}}" width="250" height="150"><br/>
+								<span class="badge">{{advert.pictures.length}}</span>
+							</div>
+							<div class="col-md-6">
+								<h5><a ng-href="#/ad-view/{{advert.id}}">Appartement 1 pièce, {{advert.location}}</a></h5>
+								<small>TALENCE - Rue Frédéric Sévène Charmant T1 d'une surface de...</small>
+							</div>
+							<div class="col-md-3">
+								<div class="price"><i class="fa fa-money"></i> {{advert.price}} $</div>
+								<div class="surface">{{advert.surface}} m<sup>2</sup></div>
+							</div>
+						</div><br/>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

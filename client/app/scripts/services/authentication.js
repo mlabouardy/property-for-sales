@@ -8,7 +8,7 @@
  * Service in the clientApp.
  */
 angular.module('clientApp')
-  .service('Authentication', function ($cookieStore, $http) {
+  .service('Authentication', function ($cookieStore, $http, $location) {
 
   	var baseUrl='http://localhost:8080/property-for-sales/api/login';
   	var connected=false;
@@ -31,6 +31,15 @@ angular.module('clientApp')
   		},
   		isConnected:function(){
   			return connected;
-  		}
+  		},
+      getRole:function(){
+        return role;
+      },
+      redirect:function(){
+        if(role=='ROLE_USER')
+          $location.path('/dashboard');
+        else
+          $location.path('/admin');
+      }
   	}
   });

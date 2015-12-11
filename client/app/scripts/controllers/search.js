@@ -10,6 +10,6 @@
 angular.module('clientApp')
   .controller('SearchCtrl', function ($scope, Adverts) {
      Adverts.getAdverts().success(function(data){
-     	$scope.advertsè=data;
+     	$scope.adverts=data;
     });
   });

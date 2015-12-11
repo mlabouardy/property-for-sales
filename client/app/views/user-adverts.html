@@ -3,6 +3,11 @@
 		<div class="panel-heading">User Advertisments</div>
 		<div class="panel-body">
 			<div ng-repeat="advert in adverts">
+			<div class="row">
+				<div class="col-md-12">
+					<a class="btn btn-danger pull-right"><i class="fa fa-trash"></i> Remove</a>
+				</div>
+			</div>
 			<div class="row advert">
 				<div class="col-md-3">
 					<img ng-src="{{advert.pictures[0].link}}" width="250" height="150"><br/>
