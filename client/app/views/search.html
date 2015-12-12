@@ -9,7 +9,7 @@
 				</div>
 			</div>
 		</div><br/>
-		<div ng-repeat="advert in adverts">
+		<div dir-paginate="advert in adverts | itemsPerPage: 5">
 			<div class="row advert">
 				<div class="col-md-3">
 					<div width="250" height="150">
@@ -27,6 +27,7 @@
 				</div>
 			</div><br/>
 		</div>
+		<dir-pagination-controls></dir-pagination-controls>
 	</div>
 </div>
 </div>

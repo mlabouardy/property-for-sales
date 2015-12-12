@@ -20,7 +20,7 @@
 			<div class="panel panel-primary">
 				<div class="panel-heading">User Advertisments</div>
 				<div class="panel-body">
-					<div ng-repeat="advert in adverts">
+					<div dir-paginate="advert in adverts | itemsPerPage: 5">
 						<div class="row">
 							<div class="col-md-12">
 								<a class="btn btn-danger pull-right" ng-click="remove(advert.id)"><i class="fa fa-trash"></i> Remove</a>
@@ -43,6 +43,7 @@
 							</div>
 						</div><br/>
 					</div>
+					<dir-pagination-controls></dir-pagination-controls>
 				</div>
 			</div>
 		</div>
