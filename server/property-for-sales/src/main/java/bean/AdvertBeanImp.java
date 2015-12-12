@@ -7,6 +7,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.hibernate.Session;
+
 import model.Advert;
 
 @Stateless
@@ -36,6 +38,12 @@ public class AdvertBeanImp implements AdvertBean{
 		Query query=em.createQuery("SELECT a FROM Advert a WHERE a.owner.id=:id");
 		query.setParameter("id", id);
 		return query.getResultList();
+	}
+
+	@Override
+	public void remove(Advert advert) {
+		advert=em.merge(advert);
+		em.remove(advert);
 	}
 
 }

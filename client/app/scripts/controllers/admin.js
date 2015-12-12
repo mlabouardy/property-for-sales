@@ -13,6 +13,23 @@ angular.module('clientApp')
     	User.getUsers().success(function(data){
     		$scope.users=data;
     	});
+
+    	$scope.refresh=function(){
+    		User.getUsers().success(function(data){
+    			$scope.users=data;
+    		});
+    	}
+
+    	$scope.delete=function(id){
+    		User.delete(id)
+    		.success(function(){
+    			$scope.msg="Success";
+    			$scope.refresh();
+    		})
+    		.error(function(){
+    			$scope.msg="Error";
+    		})
+    	}
     }else{
     	$location.path('/login');
     }

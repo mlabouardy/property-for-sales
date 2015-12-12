@@ -8,8 +8,13 @@
 
 	
 	<security:http auto-config="true" use-expressions="true" >
+		<security:intercept-url pattern="/api/profile/update" method="POST" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"/>
+		<security:intercept-url pattern="/api/profile" method="GET" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"/>
+		<security:intercept-url pattern="/api/user/adverts**" method="GET" access="hasAnyRole('ROLE_USER')"/>
+		<security:intercept-url pattern="/api/adverts/create" method="POST" access="hasAnyRole('ROLE_USER')"/>
 		<security:intercept-url pattern="/api/login" method="GET" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"/>
 		<security:intercept-url pattern="/api/users" method="GET" access="hasAnyRole('ROLE_ADMIN')"/>
+		<security:intercept-url pattern="/api/user/*/delete" method="GET" access="hasAnyRole('ROLE_ADMIN')"/>
     </security:http>
     
     

@@ -1,28 +1,50 @@
 <div class="container-fluid">
-	<div class="panel panel-primary">
-		<div class="panel-heading">User Advertisments</div>
-		<div class="panel-body">
-			<div ng-repeat="advert in adverts">
-			<div class="row">
-				<div class="col-md-12">
-					<a class="btn btn-danger pull-right"><i class="fa fa-trash"></i> Remove</a>
+	<div class="row">
+		<div ng-if="msg == 'Success'">
+			<div class="col-md-12">
+				<div class="alert alert-success" role="alert">
+					Advert successfuly deleted !
 				</div>
 			</div>
-			<div class="row advert">
-				<div class="col-md-3">
-					<img ng-src="{{advert.pictures[0].link}}" width="250" height="150"><br/>
-					<span class="badge">{{advert.pictures.length}}</span>
-				</div>
-				<div class="col-md-6">
-					<h5><a ng-href="#/ad-view/{{advert.id}}">Appartement 1 pièce, {{advert.location}}</a></h5>
-					<small>TALENCE - Rue Frédéric Sévène Charmant T1 d'une surface de...</small>
-				</div>
-				<div class="col-md-3">
-					<div class="price"><i class="fa fa-money"></i> {{advert.price}} $</div>
-					<div class="surface">{{advert.surface}} m<sup>2</sup></div>
-				</div>
-			</div><br/>
 		</div>
+		<div ng-if="msg == 'Error'">
+			<div class="col-md-12">
+				<div class="alert alert-danger" role="alert">
+					Error: something went wrong, please try again !
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-primary">
+				<div class="panel-heading">User Advertisments</div>
+				<div class="panel-body">
+					<div ng-repeat="advert in adverts">
+						<div class="row">
+							<div class="col-md-12">
+								<a class="btn btn-danger pull-right" ng-click="remove(advert.id)"><i class="fa fa-trash"></i> Remove</a>
+							</div>
+						</div>
+						<div class="row advert">
+							<div class="col-md-3">
+								<div width="250" height="150">
+									<img ng-src="http://localhost:3000/{{advert.pictures[0].link}}" style="max-width:100%;max-height:100%">
+								</div><br/>
+								<span class="badge">{{advert.pictures.length}}</span>
+							</div>
+							<div class="col-md-6">
+								<h5><a ng-href="#/ad-view/{{advert.id}}">{{advert.type}}, {{advert.location}}</a></h5>
+								<small>{{advert.description}}</small>
+							</div>
+							<div class="col-md-3">
+								<div class="price"><i class="fa fa-money"></i> {{advert.price}} $</div>
+								<div class="surface">{{advert.surface}} m<sup>2</sup></div>
+							</div>
+						</div><br/>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

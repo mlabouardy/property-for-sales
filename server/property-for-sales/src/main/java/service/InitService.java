@@ -58,15 +58,14 @@ public class InitService {
 		userBean.create(user2);
 		
 		Picture picture=new Picture();
-		picture.setLink("http://c.visuels.poliris.com/bigs/c/4/c/9/c4c9ba70-46a6.jpg");
+		picture.setLink("409bfeafc2ec360225d9a3e0eac466931449847334595.png");
 		pictureBean.create(picture);
 		
 		Picture picture2=new Picture();
-		picture2.setLink("http://d.visuels.poliris.com/bigs/d/5/2/1/d521a74f-3632.jpg");
+		picture2.setLink("409bfeafc2ec360225d9a3e0eac466931449847334595.png");
 		pictureBean.create(picture2);
 		
 		Advert advert=new Advert();
-		advert.setContact("phone");
 		advert.setLocation("Rabat");
 		advert.setOwner(user);
 		advert.setPrice(400.5);

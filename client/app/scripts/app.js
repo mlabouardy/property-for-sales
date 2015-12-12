@@ -22,28 +22,33 @@ angular
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        controller: 'MainCtrl',
+        title: 'Home'
       })
       .when('/register', {
         templateUrl: 'views/register.html',
-        controller: 'RegisterCtrl'
+        controller: 'RegisterCtrl',
+        title: 'Sign up'
       })
       .when('/login', {
         templateUrl: 'views/login.html',
-        controller: 'LoginCtrl'
+        controller: 'LoginCtrl',
+        title: 'Login'
       })
       .when('/search', {
         templateUrl: 'views/search.html',
-        controller: 'SearchCtrl'
+        controller: 'SearchCtrl',
+        title: 'Search Advertisments'
       })
       .when('/dashboard', {
         templateUrl: 'views/dashboard.html',
         controller: 'DashboardCtrl',
-        controllerAs: 'dashboard'
+        title: 'Dashboard'
       })
       .when('/ad-view/:id', {
         templateUrl: 'views/ad-view.html',
-        controller: 'AdViewCtrl'
+        controller: 'AdViewCtrl',
+        title: 'Advertisment details'
       })
       .when('/logout', {
         templateUrl: 'views/logout.html',
@@ -52,21 +57,27 @@ angular
       .when('/profile', {
         templateUrl: 'views/profile.html',
         controller: 'ProfileCtrl',
-        controllerAs: 'profile'
+        title: 'Profile'
       })
       .when('/user/:id/adverts', {
         templateUrl: 'views/user-adverts.html',
         controller: 'UserAdvertsCtrl',
-        controllerAs: 'userAdverts'
+        title: 'User Advertisment'
       })
       .when('/admin', {
         templateUrl: 'views/admin.html',
-        controller: 'AdminCtrl'
+        controller: 'AdminCtrl',
+        title: 'Admin Board'
       })
       .otherwise({
         redirectTo: '/'
       });
   })
+  .run(function ($rootScope, $route) {
+        $rootScope.$on("$routeChangeSuccess", function () {
+            document.title = $route.current.title;
+        });
+    })
  .directive('fileModel', ['$parse', function($parse) {
   return {
     restrict: 'A',

@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -21,10 +22,11 @@ public class Advert {
 	@OneToOne
 	private User owner;
 	
+	private String description;
+	private String type;
 	private double price;
 	private String surface;
 	private String location;
-	private String contact;
 	
 	@OneToMany(fetch=FetchType.EAGER)
 	private List<Picture> pictures;
@@ -63,12 +65,6 @@ public class Advert {
 	public void setLocation(String location) {
 		this.location = location;
 	}
-	public String getContact() {
-		return contact;
-	}
-	public void setContact(String contact) {
-		this.contact = contact;
-	}
 
 	public List<Picture> getPictures() {
 		return pictures;
@@ -77,5 +73,23 @@ public class Advert {
 	public void setPictures(List<Picture> pictures) {
 		this.pictures = pictures;
 	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+	
+	
 	
 }

@@ -25,6 +25,15 @@ angular.module('clientApp')
     	},
         getUsers:function(){
             return $http.get(baseUrl+'api/users');
+        },
+        getProfile:function(){
+            return $http.get(baseUrl+'api/profile');
+        },
+        updateProfile:function(data){
+            return $http.post(baseUrl+'api/profile/update',data);
+        },
+        delete:function(id){
+            return $http.get(baseUrl+'api/user/'+id+'/delete');
         }
     }
   });

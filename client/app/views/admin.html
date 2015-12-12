@@ -1,25 +1,45 @@
 <div class="container-fluid">
-	<div class="panel panel-primary">
-		<div class="panel-heading">List of users</div>
-		<div class="panel-body">
-			<table class="table table-hover table-bordered">
-				<thead>
-					<tr>
-						<th>Name</th>
-						<th>Email</th>
-						<th>Adverts</th>
-						<th>Options</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr ng-repeat="user in users">
-						<td>{{user.firstName}} {{user.lastName}}</td>
-						<td>{{user.email}}</td>
-						<td><a class="btn btn-primary btn-xs" href="#/user/{{user.id}}/adverts">View</a></td>
-						<td><a class="btn btn-danger btn-xs" href="#/delete">Delete</a></td>
-					</tr>
-				</tbody>
-			</table>
+	<div class="row">
+		<div ng-if="msg == 'Success'">
+			<div class="col-md-12">
+				<div class="alert alert-success" role="alert">
+					User successfuly deleted !
+				</div>
+			</div>
+		</div>
+		<div ng-if="msg == 'Error'">
+			<div class="col-md-12">
+				<div class="alert alert-danger" role="alert">
+					Error: something went wrong, please try again !
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-primary">
+				<div class="panel-heading">List of users</div>
+				<div class="panel-body">
+					<table class="table table-hover table-bordered">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Email</th>
+								<th>Adverts</th>
+								<th>Options</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="user in users">
+								<td>{{user.firstName}} {{user.lastName}}</td>
+								<td>{{user.email}}</td>
+								<td><a class="btn btn-primary btn-xs" href="#/user/{{user.id}}/adverts">View</a></td>
+								<td><a class="btn btn-danger btn-xs" ng-click="delete(user.id)">Delete</a></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

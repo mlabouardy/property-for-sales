@@ -29,10 +29,17 @@
     </div>
     <div class="row classWithPad">
       <div class="panel panel-primary">
-        <div class="panel-heading">Description:</div>
+        <div class="panel-heading">
+          Description:
+          <div class="button-group pull-right">
+            <a class="btn btn-success btn-xs">{{advert.type}}</a>
+            <a class="btn btn-warning btn-xs">{{advert.surface}} m<sup>2</sup></a>
+            <a class="btn btn-danger btn-xs">{{advert.price}} Euros</a>
+          </div>
+        </div>
         <div class="panel-body">
       <p>
-        Admiration we surrounded possession frequently he. Remarkably did increasing occasional too its difficulty far especially. Known tiled but sorry joy balls. Bed sudden manner indeed fat now feebly. Face do with in need of wife paid that be. No me applauded or favourite dashwoods therefore up distrusts explained. 
+        {{advert.description}}
       </p>
     </div>
     </div>
@@ -52,7 +59,7 @@
             <i class="fa fa-envelope"></i> {{advert.owner.email}}
           </li>
           <li class="list-group-item">
-            <i class="fa fa-phone"></i> 0666325614
+            <i class="fa fa-phone"></i> {{advert.owner.phone}}
           </li>
         </ul>
       </div>
@@ -83,6 +90,17 @@
             <i class="fa fa-envelope"></i>
           </a>
         </div>
+      </div>
+    </div>
+  </div>
+  <div class="row classWithPad">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        Location
+      </div>
+      <div class="panel-body">
+        <div id="map-canvas" style="height:300px;width:100%"></div>
+      </div>
       </div>
     </div>
   </div>
