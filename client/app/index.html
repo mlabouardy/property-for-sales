@@ -8,6 +8,7 @@
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
   <!-- build:css(.) styles/vendor.css -->
   <!-- bower:css -->
+  <link rel="stylesheet" href="bower_components/toastr/toastr.css" />
   <!-- endbower -->
   <!-- endbuild -->
   <!-- build:css(.tmp) styles/main.css -->
@@ -30,7 +31,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#/">Property for sales</a>
+            <a class="navbar-brand" href="#/">Property for Sales</a>
           </div>
           <div id="navbar" class="navbar-collapse collapse" ng-controller="MenuCtrl">
             <div ng-if="!isConnected()">
@@ -60,17 +61,6 @@
 
       <div ng-view=""></div>
 
-      <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-      <script>
-      !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
-       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
-       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
-     }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-     ga('create', 'UA-XXXXX-X');
-     ga('send', 'pageview');
-     </script>
-
      <!-- build:js(.) scripts/vendor.js -->
      <!-- bower:js -->
      <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -85,10 +75,13 @@
      <script src="bower_components/angular-base64/angular-base64.js"></script>
      <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
      <script src="bower_components/angularUtils-pagination/dirPagination.js"></script>
+     <script src="bower_components/toastr/toastr.js"></script>
      <!-- endbower -->
      <!-- endbuild -->
 
      <!-- build:js({.tmp,app}) scripts/scripts.js -->
+     <script src="http://markusslima.github.io/bootstrap-filestyle/js/bootstrap-filestyle.min.js"></script>
+     <script src="http://maps.google.com/maps/api/js?sensor=false"></script> 
      <script src="scripts/app.js"></script>
      <script src="scripts/controllers/main.js"></script>
      <script src="scripts/controllers/register.js"></script>

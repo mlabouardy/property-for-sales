@@ -10,6 +10,10 @@
  angular.module('clientApp')
  .controller('DashboardCtrl', function (Authentication, $location, $scope, $http, Adverts, Upload) {
  	if(Authentication.isConnected() && Authentication.getRole()=='ROLE_USER'){
+
+
+     	toastr.info('Welcome to property for sales !');
+
  		Adverts.getUserAdverts().success(function(data){
  			$scope.adverts=data;
  		});
@@ -31,6 +35,8 @@
 	    var EXTENSIONS_ALLOW=['png','jpg','jpeg'];
 
 	    $scope.files=[];
+
+	    $(":file").filestyle({input: false, buttonText: " Choose picture", badge: false});
 
 	    $scope.upload= function(img) {
 	    	var fileName=img.name;
@@ -68,6 +74,7 @@
 	    		pictures: $scope.files
 	    	};
 	    	Adverts.createAdvert(data).success(function(data){
+	    		toastr.success('Advert successfuly created!', 'Property for sales')
 	    		$scope.refresh();
 	    	});
 	    	$scope.description="";

@@ -11,8 +11,6 @@ angular.module('clientApp')
   .controller('SearchCtrl', function ($scope, Adverts) {
      Adverts.getAdverts().success(function(data){
      	$scope.adverts=data;
-
-     	
     });
  
   });

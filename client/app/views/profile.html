@@ -3,6 +3,7 @@
 			<div ng-if="msg == 'Success'">
 				<div class="col-md-12">
 					<div class="alert alert-success" role="alert">
+						<a class="close" data-dismiss="alert">&times;</a>
 						Profile successfuly updated !
 					</div>
 				</div>
@@ -10,6 +11,7 @@
 			<div ng-if="msg == 'Error'">
 				<div class="col-md-12">
 					<div class="alert alert-danger" role="alert">
+						<a class="close" data-dismiss="alert">&times;</a>
 						Error: something went wrong, please try again !
 					</div>
 				</div>
@@ -50,9 +52,28 @@
 		</div>
 		<div class="col-md-6">
 			<div class="panel panel-primary">
-				<div class="panel-heading"></div>
+				<div class="panel-heading">Profile Picture</div>
 				<div class="panel-body">
-					
+					<div ng-if="file_upload_error!=undefined">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="alert alert-danger">
+									{{file_upload_error}}
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-3">
+						<img id="profile" ng-src="http://localhost:3000/{{profile.picture.link}}" width="100%">
+						</div>
+						<div class="col-md-3">
+							<input type="file" name="file" id="files" file-model="img" accept="image/*">
+						</div>
+						<div class="col-md-3">
+							<button class="btn btn-success" ng-click="upload(img)">Upload</button>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

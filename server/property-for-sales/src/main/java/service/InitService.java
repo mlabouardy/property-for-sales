@@ -41,36 +41,48 @@ public class InitService {
 		role_admin.setName("ROLE_ADMIN");
 		roleBean.create(role_admin);
 		
+		Picture userPic=new Picture();
+		userPic.setLink("1cc126a5f30a1dfd95908d14d908e6501450012301871.png");
+		pictureBean.create(userPic);
+		
 		User user=new User();
 		user.setFirstName("Mohamed");
 		user.setLastName("Labouardy");
 		user.setEmail("mohamed@labouardy.com");
 		user.setPassword("lollol");
+		user.setAddress("AVENUE COLLEGNO BAT A NUM 509");
+		user.setPhone("0664435680");
 		user.setRole(role_user);
+		user.setPicture(userPic);
 		userBean.create(user);
 		
-		User user2=new User();
-		user2.setFirstName("Admin");
-		user2.setLastName("Admin");
-		user2.setEmail("admin@labouardy.com");
-		user2.setPassword("admin");
-		user2.setRole(role_admin);
-		userBean.create(user2);
+		User admin=new User();
+		admin.setFirstName("Admin");
+		admin.setLastName("Admin");
+		admin.setEmail("admin@labouardy.com");
+		admin.setPassword("admin");
+		admin.setAddress("AVENUE COLLEGNO BAT A NUM 402");
+		admin.setPhone("0674435610");
+		admin.setRole(role_admin);
+		admin.setPicture(userPic);
+		userBean.create(admin);
 		
-		Picture picture=new Picture();
-		picture.setLink("409bfeafc2ec360225d9a3e0eac466931449847334595.png");
-		pictureBean.create(picture);
+		Picture pic1=new Picture();
+		pic1.setLink("409bfeafc2ec360225d9a3e0eac466931449847334595.png");
+		pictureBean.create(pic1);
 		
-		Picture picture2=new Picture();
-		picture2.setLink("409bfeafc2ec360225d9a3e0eac466931449847334595.png");
-		pictureBean.create(picture2);
+		Picture pic2=new Picture();
+		pic2.setLink("409bfeafc2ec360225d9a3e0eac466931449847334595.png");
+		pictureBean.create(pic2);
 		
 		Advert advert=new Advert();
 		advert.setLocation("Rabat");
 		advert.setOwner(user);
+		advert.setType("T1");
+		advert.setDescription("Beautiful T1 near Tram B");
 		advert.setPrice(400.5);
-		advert.getPictures().add(picture);
-		advert.getPictures().add(picture2);
+		advert.getPictures().add(pic1);
+		advert.getPictures().add(pic2);
 		advert.setSurface("200");
 		advertBean.createAdvert(advert);
 		

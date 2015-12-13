@@ -23,6 +23,9 @@ public class User {
 	private String address;
 	private String phone;
 	
+	@OneToOne
+	private Picture picture;
+	
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<Advert> adverts;
 	
@@ -88,6 +91,14 @@ public class User {
 
 	public void setRole(Role role) {
 		this.role = role;
+	}
+
+	public Picture getPicture() {
+		return picture;
+	}
+
+	public void setPicture(Picture picture) {
+		this.picture = picture;
 	}
 	
 	

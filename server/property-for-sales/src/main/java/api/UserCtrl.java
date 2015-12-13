@@ -7,6 +7,7 @@ import javax.ejb.EJB;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +23,7 @@ import bean.PictureBean;
 import bean.RoleBean;
 import bean.UserBean;
 import model.Advert;
+import model.Picture;
 import model.Role;
 import model.User;
 
@@ -37,7 +39,10 @@ public class UserCtrl {
 	@EJB(mappedName="java:app/property-for-sales/AdvertBeanImp!bean.AdvertBean")
 	private AdvertBean advertBean;
 	
+	@EJB(mappedName="java:app/property-for-sales/PictureBeanImp!bean.PictureBean")
+	private PictureBean pictureBean;
 	
+	@Secured("ROLE_ADMIN")
 	@RequestMapping(value="/api/users", method=RequestMethod.GET, produces="application/json")
 	public List<User> getUsers(){
 		return userBean.getUsers();
@@ -50,6 +55,7 @@ public class UserCtrl {
 		userBean.create(user);
 	}
 	
+	@Secured({"ROLE_ADMIN","ROLE_USER"})
 	@RequestMapping(value="/api/profile", method=RequestMethod.GET, produces="application/json")
 	public User getProfile(){
 		Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
@@ -58,11 +64,13 @@ public class UserCtrl {
 		return user;
 	}
 	
+	@Secured({"ROLE_ADMIN","ROLE_USER"})
 	@RequestMapping(value="/api/profile/update", method=RequestMethod.POST)
 	public void update(@RequestBody final User user){
 		userBean.update(user);
 	}
 	
+	@Secured("ROLE_ADMIN")
 	@RequestMapping(value="/api/user/{id}/delete", method=RequestMethod.GET, produces="application/json")
 	public void deleteUser(@PathVariable int id){
 		User user=userBean.findById(id);
@@ -71,5 +79,16 @@ public class UserCtrl {
 		for(Advert a: adverts)
 			advertBean.remove(a);
 		userBean.delete(user);
+	}
+	
+	@Secured({"ROLE_ADMIN","ROLE_USER"})
+	@RequestMapping(value="/api/profile/picture/update", method=RequestMethod.POST)
+	public void updateProfilePicture(@RequestBody final Picture picture){
+		Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
+		String email=authentication.getName();
+		pictureBean.create(picture);
+		User user=userBean.findByEmail(email);
+		user.setPicture(picture);
+		userBean.update(user);
 	}
 }

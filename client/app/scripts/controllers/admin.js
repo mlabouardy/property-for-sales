@@ -10,13 +10,22 @@
 angular.module('clientApp')
   .controller('AdminCtrl', function (Authentication, $location, $scope, User) {
     if(Authentication.isConnected() && Authentication.getRole()=='ROLE_ADMIN'){
+
+    	toastr.info('Welcome to property for sales !');
+
     	User.getUsers().success(function(data){
     		$scope.users=data;
+    		if(data.length==0){
+    			toastr.success('No adverts found yet!', 'Property for sales');
+    		}
     	});
 
     	$scope.refresh=function(){
     		User.getUsers().success(function(data){
     			$scope.users=data;
+    			if(data.length==0){
+    				toastr.success('No adverts found yet!', 'Property for sales');
+    			}
     		});
     	}
 

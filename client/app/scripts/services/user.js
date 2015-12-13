@@ -34,6 +34,12 @@ angular.module('clientApp')
         },
         delete:function(id){
             return $http.get(baseUrl+'api/user/'+id+'/delete');
+        },
+        changePicture:function(link){
+            var data={
+                link: link
+            };
+            return $http.post(baseUrl+'api/profile/picture/update',data);
         }
     }
   });

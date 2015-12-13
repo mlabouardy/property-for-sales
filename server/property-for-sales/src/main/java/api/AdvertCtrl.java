@@ -50,6 +50,7 @@ public class AdvertCtrl {
 		return advertBean.getAdvertsByUserId(id);
 	}
 	
+	@Secured("ROLE_USER")
 	@RequestMapping(value="/api/user/adverts", method=RequestMethod.GET, produces="application/json")
 	public List<Advert> getAdvertsOfUser(){
 		Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
@@ -58,6 +59,7 @@ public class AdvertCtrl {
 		return advertBean.getAdvertsByUserId(user.getId());
 	}
 	
+	@Secured("ROLE_USER")
 	@RequestMapping(value="/api/user/adverts/{id}/delete", method=RequestMethod.GET, produces="application/json")
 	public void deleteAdvert(@PathVariable int id){
 		Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
@@ -90,6 +92,7 @@ public class AdvertCtrl {
 		advertBean.remove(advert);
 	}
 	
+	@Secured("ROLE_USER")
 	@RequestMapping(value="/api/adverts/create", method=RequestMethod.POST)
 	public void createAdvert(@RequestBody final Advert advert){
 		Authentication authentication=SecurityContextHolder.getContext().getAuthentication();

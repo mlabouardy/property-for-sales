@@ -2,6 +2,7 @@ package api;
 
 import java.util.Set;
 
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,6 +17,7 @@ import model.User;
 @RequestMapping("/api")
 public class LoginCtrl {
 		
+	@Secured({"ROLE_USER","ROLE_ADMIN"})
 	@RequestMapping(value="/login", method=RequestMethod.GET, produces="application/json")
 	public Role login(){
 		Authentication authentication=SecurityContextHolder.getContext().getAuthentication();

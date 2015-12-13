@@ -45,7 +45,10 @@
 								</div> 
 								<div ng-if="file_upload_error != undefined">
 									<div class="col-md-6">
-										<div class="alert alert-danger">{{file_upload_error}}</div>
+										<div class="alert alert-danger">
+											<a class="close" data-dismiss="alert">&times;</a>
+											{{file_upload_error}}
+										</div>
 									</div>
 								</div>
 							</div><br/>
