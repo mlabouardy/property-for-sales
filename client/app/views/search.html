@@ -5,11 +5,11 @@
 			<div class="col-md-12">
 				<div class="input-group">
 				  <span class="input-group-addon" id="basic-addon1"><i class="fa fa-search"></i></span>
-				  <input type="text" class="form-control" placeholder="Search" aria-describedby="basic-addon1">
+				  <input type="text" class="form-control" placeholder="Search" ng-model="keyword" aria-describedby="basic-addon1">
 				</div>
 			</div>
 		</div><br/>
-		<div dir-paginate="advert in adverts | itemsPerPage: 5">
+		<div dir-paginate="advert in adverts | filter:keyword| itemsPerPage: 5">
 			<div class="row advert">
 				<div class="col-md-3">
 					<div width="250" height="150">
