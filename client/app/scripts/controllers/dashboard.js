@@ -8,7 +8,7 @@
  * Controller of the clientApp
  */
  angular.module('clientApp')
- .controller('DashboardCtrl', function (Authentication, $location, $scope, $http, Adverts, Upload) {
+ .controller('DashboardCtrl', function (Authentication, $location, $scope, $http, Adverts, Upload, User) {
  	if(Authentication.isConnected() && Authentication.getRole()=='ROLE_USER'){
 
 
@@ -28,6 +28,17 @@
  			Adverts.removeAdvert(id).success(function(data){
  				$scope.refresh();
  			});
+ 		}
+
+ 		$scope.updateCriteria=function(){
+ 			$scope.keyword.price=parseFloat($scope.keyword.price);
+ 			User.updateCriteria($scope.keyword)
+ 				.success(function(){
+ 					toastr.success('Search criteria successfuly updated!', 'Property for sales');
+ 				})
+ 				.error(function(){
+ 					toastr.warning('Something went wrong!', 'Property for sales');
+ 				});
  		}
 
  		var MAX_FILES=5;

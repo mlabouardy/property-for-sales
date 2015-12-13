@@ -13,7 +13,7 @@
  		$scope.advert=data;
 
  		var location=$scope.advert.location;
- 		$http.get('https://maps.googleapis.com/maps/api/geocode/json?address='+location)
+ 		$http.get(GOOGLE_MAP+location)
  		.success(function(data){
  			console.log(data.results[0].geometry.location);
  			var lat=data.results[0].geometry.location.lat;
@@ -28,8 +28,6 @@
  	});
 
  	function initialize(lat, lng) {
-
- 		/* position Amsterdam */
  		var latlng = new google.maps.LatLng(lat,lng);
 
  		var mapOptions = {

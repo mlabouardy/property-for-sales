@@ -9,8 +9,6 @@
  */
 angular.module('clientApp')
   .service('Authentication', function ($cookieStore, $http, $location) {
-
-  	var baseUrl='http://localhost:8080/property-for-sales/api/login';
   	var connected=false;
     var role;
 
@@ -18,7 +16,7 @@ angular.module('clientApp')
   		login:function(){
   			var authdata=$cookieStore.get('authdata');
 	    	$http.defaults.headers.common['Authorization'] = 'Basic ' + authdata; 
-	    	return $http.get(baseUrl);
+	    	return $http.get(SERVER_URL+'api/login');
   		},
   		logout:function(){
   			$cookieStore.remove('authdata');

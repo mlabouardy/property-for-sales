@@ -1,34 +1,126 @@
 package api;
 
+import java.lang.annotation.Annotation;
 import java.util.List;
 
 import javax.ejb.EJB;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import bean.AdvertBean;
+import bean.CriteriaBean;
+import bean.PictureBean;
+import bean.RoleBean;
 import bean.UserBean;
+import model.Advert;
+import model.Criteria;
+import model.Picture;
+import model.Role;
 import model.User;
 
 @RestController
-@RequestMapping("/api")
 public class UserCtrl {
 
 	@EJB(mappedName="java:app/property-for-sales/UserBeanImp!bean.UserBean")
 	private UserBean userBean;
 	
-	@RequestMapping(value="/users", method=RequestMethod.GET, produces="application/json")
+	@EJB(mappedName="java:app/property-for-sales/RoleBeanImp!bean.RoleBean")
+	private RoleBean roleBean;
+	
+	@EJB(mappedName="java:app/property-for-sales/AdvertBeanImp!bean.AdvertBean")
+	private AdvertBean advertBean;
+	
+	@EJB(mappedName="java:app/property-for-sales/PictureBeanImp!bean.PictureBean")
+	private PictureBean pictureBean;
+	
+	@EJB(mappedName="java:app/property-for-sales/CriteriaBeanImp!bean.CriteriaBean")
+	private CriteriaBean criteriaBean;
+	
+	@Secured("ROLE_ADMIN")
+	@RequestMapping(value="/api/users", method=RequestMethod.GET, produces="application/json")
 	public List<User> getUsers(){
 		return userBean.getUsers();
 	}
 	
 	@RequestMapping(value="/user/create", method=RequestMethod.POST)
-	@ResponseStatus(value=HttpStatus.ACCEPTED)
 	public void register(@RequestBody final User user){
+		Criteria criteria=new Criteria();
+		criteriaBean.create(criteria);
+		Role role=roleBean.findByName("ROLE_USER");
+		user.setRole(role);
+		user.setCriteria(criteria);
 		userBean.create(user);
 	}
+	
+	@Secured({"ROLE_ADMIN","ROLE_USER"})
+	@RequestMapping(value="/api/profile", method=RequestMethod.GET, produces="application/json")
+	public User getProfile(){
+		Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
+		String email=authentication.getName();
+		User user=userBean.findByEmail(email);
+		return user;
+	}
+	
+	@Secured({"ROLE_ADMIN","ROLE_USER"})
+	@RequestMapping(value="/api/profile/update", method=RequestMethod.POST)
+	public void update(@RequestBody final User user){
+		userBean.update(user);
+	}
+	
+	@Secured("ROLE_ADMIN")
+	@RequestMapping(value="/api/user/{id}/delete", method=RequestMethod.GET, produces="application/json")
+	public void deleteUser(@PathVariable int id){
+		User user=userBean.findById(id);
+		List<Advert> adverts=advertBean.getAdvertsByUserId(user.getId());
+		System.out.println(adverts);
+		for(Advert a: adverts)
+			advertBean.remove(a);
+		userBean.delete(user);
+	}
+	
+	@Secured({"ROLE_ADMIN","ROLE_USER"})
+	@RequestMapping(value="/api/profile/picture/update", method=RequestMethod.POST)
+	public void updateProfilePicture(@RequestBody final Picture picture){
+		Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
+		String email=authentication.getName();
+		pictureBean.create(picture);
+		User user=userBean.findByEmail(email);
+		user.setPicture(picture);
+		userBean.update(user);
+	}
+	
+	@Secured({"ROLE_USER"})
+	@RequestMapping(value="/api/criteria/update", method=RequestMethod.POST)
+	public void updateCriteria(@RequestBody final Criteria criteria){
+		Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
+		String email=authentication.getName();
+		criteriaBean.create(criteria);
+		User user=userBean.findByEmail(email);
+		user.setCriteria(criteria);
+		userBean.update(user);
+	}
+	
+	@Secured({"ROLE_USER"})
+	@RequestMapping(value="/api/criteria", method=RequestMethod.GET, produces="application/json")
+	public Criteria getCriteria(){
+		Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
+		String email=authentication.getName();
+		User user=userBean.findByEmail(email);
+		return user.getCriteria();
+	}
+	
+	
+	
+	
 }

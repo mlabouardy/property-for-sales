@@ -1,34 +1,60 @@
 <div class="container-fluid">
-<div class="panel panel-primary">
-	<div class="panel-body">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="input-group">
-				  <span class="input-group-addon" id="basic-addon1"><i class="fa fa-search"></i></span>
-				  <input type="text" class="form-control" placeholder="Search" ng-model="keyword" aria-describedby="basic-addon1">
-				</div>
-			</div>
-		</div><br/>
-		<div dir-paginate="advert in adverts | filter:keyword| itemsPerPage: 5">
-			<div class="row advert">
-				<div class="col-md-3">
-					<div width="250" height="150">
-					<img ng-src="http://localhost:3000/{{advert.pictures[0].link}}" style="max-width:100%;max-height:100%">
-					</div><br/>
-					<span class="badge">{{advert.pictures.length}}</span>
-				</div>
-				<div class="col-md-6">
-					<h5><a ng-href="#/ad-view/{{advert.id}}">{{advert.type}}, {{advert.location}}</a></h5>
-					<small>{{advert.description}}</small>
-				</div>
-				<div class="col-md-3">
-					<div class="price"><i class="fa fa-money"></i> {{advert.price}} $</div>
-					<div class="surface">{{advert.surface}} m<sup>2</sup></div>
+	<div class="panel panel-primary">
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="input-group">
+						<span class="input-group-addon" id="basic-addon1"><i class="fa fa-search"></i></span>
+						<input type="text" class="form-control" placeholder="Search in general" ng-model="keyword" aria-describedby="basic-addon1">
+					</div>
 				</div>
 			</div><br/>
+			<div class="row">
+				<div class="col-md-3">
+					<div class="form-group">
+						<label>Type:</label>
+						<input type="text" ng-model="keyword.type" class="form-control">
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="form-group">
+						<label>Surface:</label>
+						<input type="text" ng-model="keyword.surface" class="form-control">
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="form-group">
+						<label>Price:</label>
+						<input type="text" ng-model="keyword.price" class="form-control">
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="form-group">
+						<label>Location:</label>
+						<input type="text" ng-model="keyword.location" class="form-control">
+					</div>
+				</div>
+			</div><br/>
+			<div dir-paginate="advert in adverts | filter:keyword| itemsPerPage: 5">
+				<div class="row advert">
+					<div class="col-md-3">
+						<div width="250" height="150">
+							<img ng-src="http://localhost:3000/{{advert.pictures[0].link}}" style="max-width:100%;max-height:100%">
+						</div><br/>
+						<span class="badge">{{advert.pictures.length}}</span>
+					</div>
+					<div class="col-md-6">
+						<h5><a ng-href="#/ad-view/{{advert.id}}">{{advert.type}}, {{advert.location}}</a></h5>
+						<small>{{advert.description}}</small>
+					</div>
+					<div class="col-md-3">
+						<div class="price"><i class="fa fa-money"></i> {{advert.price}} $</div>
+						<div class="surface">{{advert.surface}} m<sup>2</sup></div>
+					</div>
+				</div><br/>
+			</div>
+			<dir-pagination-controls></dir-pagination-controls>
 		</div>
-		<dir-pagination-controls></dir-pagination-controls>
 	</div>
-</div>
 </div>
 </div>

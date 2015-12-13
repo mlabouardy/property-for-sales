@@ -10,13 +10,11 @@
 angular.module('clientApp')
   .service('Upload', function ($http) {
 
-  	var baseUrl='http://localhost:3000/upload';
-
   	return{
   		upload:function(file){
   			var fd = new FormData();
   			fd.append('file', file);
-		    return $http.post(baseUrl, fd, {
+		    return $http.post(CLOUD_URL, fd, {
 		        transformRequest: angular.identity,
 		        headers: {
 		          'Content-Type': undefined

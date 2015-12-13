@@ -4,17 +4,18 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import model.Picture;
+import model.Criteria;
+
 
 @Stateless
-public class PictureBeanImp implements PictureBean{
-
+public class CriteriaBeanImp implements CriteriaBean{
+	
 	@PersistenceContext
 	private EntityManager em;
-	
+
 	@Override
-	public void create(Picture picture) {
-		em.persist(picture);
+	public void create(Criteria criteria) {
+		em.persist(criteria);
 	}
 
 }

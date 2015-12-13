@@ -13,7 +13,15 @@ angular.module('clientApp')
     	$location.path('/dashboard');
     }else{
     	$scope.register=function(){
-    		User.register($scope.firstName, $scope.lastName, $scope.email, $scope.password)
+            var data={
+                firstName: $scope.firstName,
+                lastName: $scope.lastName,
+                email: $scope.email,
+                password: $scope.password,
+                address: "",
+                phone: ""
+            };
+    		User.register(data)
     			.success(function(data){
     				$location.path('/login');
     			})

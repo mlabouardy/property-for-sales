@@ -2,16 +2,19 @@ package model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class User {
 	
 	@Id 
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	private String firstName;
 	private String lastName;
@@ -20,8 +23,17 @@ public class User {
 	private String address;
 	private String phone;
 	
-	@OneToMany
+	@OneToOne
+	private Picture picture;
+	
+	@OneToMany(cascade=CascadeType.ALL)
 	private List<Advert> adverts;
+	
+	@OneToOne
+	private Criteria criteria;
+	
+	@OneToOne
+	private Role role;
 	
 	public User(){}
 	
@@ -74,6 +86,30 @@ public class User {
 
 	public void setAdverts(List<Advert> adverts) {
 		this.adverts = adverts;
+	}
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
+	public Picture getPicture() {
+		return picture;
+	}
+
+	public void setPicture(Picture picture) {
+		this.picture = picture;
+	}
+
+	public Criteria getCriteria() {
+		return criteria;
+	}
+
+	public void setCriteria(Criteria criteria) {
+		this.criteria = criteria;
 	}
 	
 	

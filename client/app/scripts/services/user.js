@@ -9,37 +9,31 @@
  */
 angular.module('clientApp')
   .service('User', function ($http) {
-    var baseUrl='http://localhost:8080/property-for-sales/';
 
     return{
-    	register:function(fname, lname, em, pass){
-    		var data={
-    			firstName: fname,
-    			lastName: lname,
-    			email: em,
-    			password: pass,
-    			address: "",
-    			phone: ""
-    		};
-    		return $http.post(baseUrl+'user/create',data);
+    	register:function(data){
+    		return $http.post(SERVER_URL+'user/create',data);
     	},
         getUsers:function(){
-            return $http.get(baseUrl+'api/users');
+            return $http.get(SERVER_URL+'api/users');
         },
         getProfile:function(){
-            return $http.get(baseUrl+'api/profile');
+            return $http.get(SERVER_URL+'api/profile');
         },
         updateProfile:function(data){
-            return $http.post(baseUrl+'api/profile/update',data);
+            return $http.post(SERVER_URL+'api/profile/update',data);
         },
         delete:function(id){
-            return $http.get(baseUrl+'api/user/'+id+'/delete');
+            return $http.get(SERVER_URL+'api/user/'+id+'/delete');
         },
-        changePicture:function(link){
-            var data={
-                link: link
-            };
-            return $http.post(baseUrl+'api/profile/picture/update',data);
+        changePicture:function(data){
+            return $http.post(SERVER_URL+'api/profile/picture/update',data);
+        },
+        updateCriteria:function(data){
+            return $http.post(SERVER_URL+'api/criteria/update',data);
+        },
+        getCriteria:function(){
+            return $http.get(SERVER_URL+'api/criteria');
         }
     }
   });

@@ -16,4 +16,13 @@ public interface UserBean {
 	public User findById(int id);
 	
 	public List<User> getUsers();
+
+	public User getUserById(int id);
+
+	public User findByEmail(String email);
+
+	public void update(User user);
+
+	public void delete(User user);
+
 }

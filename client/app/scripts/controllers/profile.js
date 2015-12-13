@@ -40,7 +40,10 @@ angular.module('clientApp')
 		    			Upload.upload(img).success(function(data){
 		    				if(data.success){
 		    					//upload to server
-		    					User.changePicture(data.filename)
+		    					var data={
+					                link: data.filename
+					            };
+		    					User.changePicture(data)
 		    						.success(function(){
 		    							toastr.success('Profile picture successfuly updated!', 'Property for sales');
 		    						})
