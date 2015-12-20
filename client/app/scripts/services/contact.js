@@ -15,6 +15,9 @@ angular.module('clientApp')
   		},
   		messages:function(){
   			return $http.get(SERVER_URL+'api/user/messages');
+  		},
+  		delete:function(id){
+  			return $http.get(SERVER_URL+'api/user/messages/'+id+'/delete');
   		}
   	}
   });

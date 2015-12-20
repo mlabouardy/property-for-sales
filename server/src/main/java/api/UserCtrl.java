@@ -126,7 +126,7 @@ public class UserCtrl {
 		return user.getCriteria();
 	}
 	
-	@RequestMapping(value="/api/user/advert/contact", method=RequestMethod.POST, produces="application/json")
+	@RequestMapping(value="/api/user/advert/contact", method=RequestMethod.POST, produces="text/plain")
 	public ResponseEntity<String> sendMsg(@RequestBody Contact contact){
 		User user=userBean.findById(contact.getIdReceiver());
 		if(user==null){
@@ -163,4 +163,29 @@ public class UserCtrl {
 		
 	}
 	
+	@Secured({"ROLE_USER","ROLE_ADMIN"})
+	@RequestMapping(value="/api/user/messages/{id}/delete", method=RequestMethod.GET, produces="text/plain")
+	public ResponseEntity<String> deleteMessage(@PathVariable int id){
+		Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
+		String email=authentication.getName();
+		User user=userBean.findByEmail(email);
+		List<Message> messages=user.getMessages();
+		int toremove=-1;
+		int i=0;
+		for(Message msg:messages){
+			if(msg.getId()==id){
+				toremove=i;
+				break;
+			}
+			i++;
+		}
+		if(toremove==-1){
+			return new ResponseEntity<>("Message doesnt found !",HttpStatus.BAD_REQUEST);
+		}
+		messages.remove(toremove);
+		user.setMessages(messages);
+		userBean.update(user);
+		msgBean.delete(id);
+		return new ResponseEntity<>("Message successfuly deleted !",HttpStatus.OK);
+	}
 }

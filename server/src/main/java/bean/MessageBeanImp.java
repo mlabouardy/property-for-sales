@@ -17,4 +17,11 @@ public class MessageBeanImp implements MessageBean{
 		em.persist(msg);
 	}
 
+	@Override
+	public void delete(int id) {
+		Message message=em.find(Message.class, id);
+		message=em.merge(message);
+		em.remove(message);
+	}
+
 }

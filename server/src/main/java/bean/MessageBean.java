@@ -8,5 +8,7 @@ import model.Message;
 public interface MessageBean {
 
 	public void create(Message msg);
+
+	public void delete(int id);
 	
 }
