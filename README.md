@@ -1,19 +1,21 @@
 # Property-for-sales
 
 # Public:
-	- /adverts -> GET -> List of adverts <br/>
-	- /user/create -> POST -> Register <br/>
-	- /adverts/{id} -> GET -> Advert detail <br/>
-	- /user/{id}/adverts -> GET ->user adverts -> Non <br/>
+	- /adverts -> GET -> List of adverts 
+	- /user/create -> POST -> Register
+	- /adverts/{id} -> GET -> Advert detail 
+	- /user/{id}/adverts -> GET ->user adverts 
 
 # Private:
-	/api/user/adverts -> get -> user adverts <br/>
-	/api/user/adverts/{id}/delete -> GET -> delete advert <br/>
-	/api/user/{id}/adverts/{id}/delete -> GET delete user advert  <br/>
-	/api/adverts/create -> POST -> create advert <br/>
-	/api/login -> GET -> Login <br/>
-	/api/users -> GET -> list of users <br/>
-	/api/profile -> get > GET PROFILE <br/>
-	/api/profile/update -> post -> update profile <br/>
-	/api/user/{id}/delete -> GET -> delete user <br/>
-	/api/profile/pîcture/delete -> POST -> update profile picture  <br/>
+	- /api/user/adverts -> get -> user adverts 
+	- /api/user/adverts/{id}/delete -> GET -> delete advert
+	- /api/user/{id}/adverts/{id}/delete -> GET delete user advert  
+	- /api/adverts/create -> POST -> create advert 
+	- /api/login -> GET -> Login
+	- /api/users -> GET -> list of users
+	- /api/profile -> get > GET PROFILE
+	- /api/profile/update -> post -> update profile
+	- /api/user/{id}/delete -> GET -> delete user 
+	- /api/profile/pîcture/delete -> POST -> update profile picture  
+	- /api/criteria/update -> POST -> update search criteria
+	-  /api/criteria -> GET -> get user criteria
