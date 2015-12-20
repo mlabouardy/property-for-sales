@@ -84,6 +84,11 @@ angular
         controller: 'MessagesCtrl',
         title: 'Mailbox'
       })
+      .when('/favorites', {
+        templateUrl: 'views/favorites.html',
+        controller: 'FavoritesCtrl',
+        title: 'List of favorites'
+      })
       .otherwise({
         redirectTo: '/'
       });

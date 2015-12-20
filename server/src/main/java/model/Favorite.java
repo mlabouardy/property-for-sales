@@ -16,18 +16,28 @@ public class Favorite {
 	@GeneratedValue
 	private int id;
 	
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.MERGE)
 	private List<Advert> adverts;
 	
 	public Favorite(){
 		adverts=new ArrayList<>();
 	}
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public List<Advert> getAdverts() {
 		return adverts;
 	}
 
-	public void setAdverts(List<Advert> favorites) {
-		this.adverts = favorites;
+	public void setAdverts(List<Advert> adverts) {
+		this.adverts = adverts;
 	}
+
+	
 }

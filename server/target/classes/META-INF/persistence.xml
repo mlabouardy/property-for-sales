@@ -13,6 +13,7 @@
 		<class>model.Advert</class>
 		<class>model.Criteria</class>
 		<class>model.Message</class>
+		<class>model.Favorite</class>
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
 			<property name="hibernate.show_sql" value="true" />

@@ -8,7 +8,8 @@
  * Controller of the clientApp
  */
  angular.module('clientApp')
- .controller('AdViewCtrl', function ($routeParams, $scope, Adverts, $http) {
+ .controller('AdViewCtrl', function ($routeParams, $scope, Adverts, $http, $location) {
+ 	$scope.pageUrl=$location.absUrl();
  	Adverts.findById($routeParams.id).success(function(data){
  		$scope.advert=data;
 

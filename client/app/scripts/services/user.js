@@ -37,6 +37,12 @@ angular.module('clientApp')
         },
         addFavorite:function(id){
            return $http.get(SERVER_URL+'api/user/favorites/create/'+id); 
+        },
+        favorites:function(){
+            return $http.get(SERVER_URL+'api/user/favorites'); 
+        },
+        removeFavorite:function(id){
+            return $http.get(SERVER_URL+'api/user/favorites/'+id+'/delete'); 
         }
     }
   });
