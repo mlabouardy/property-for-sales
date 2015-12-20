@@ -22,6 +22,7 @@ public class User {
 	private String firstName;
 	private String lastName;
 	private String email;
+	@JsonIgnore
 	private String password;
 	private String address;
 	private String phone;
@@ -29,12 +30,15 @@ public class User {
 	@OneToOne
 	private Picture picture;
 	
+	@JsonIgnore
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<Advert> adverts;
 	
+	@JsonIgnore
 	@OneToOne
 	private Criteria criteria;
 	
+	@JsonIgnore
 	@OneToOne
 	private Role role;
 	
@@ -42,6 +46,7 @@ public class User {
 	@OneToMany
 	private List<Message> messages;
 	
+	@JsonIgnore
 	@OneToOne
 	private Favorite favorite;
 	

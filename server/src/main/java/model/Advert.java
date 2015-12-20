@@ -21,7 +21,6 @@ public class Advert {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	@JsonIgnore
 	@OneToOne
 	private User owner;
 	
