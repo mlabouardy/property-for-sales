@@ -20,11 +20,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import bean.AdvertBean;
 import bean.CriteriaBean;
+import bean.MessageBean;
 import bean.PictureBean;
 import bean.RoleBean;
 import bean.UserBean;
 import model.Advert;
+import model.Contact;
 import model.Criteria;
+import model.Message;
 import model.Picture;
 import model.Role;
 import model.User;
@@ -46,6 +49,9 @@ public class UserCtrl {
 	
 	@EJB(mappedName="java:app/property-for-sales/CriteriaBeanImp!bean.CriteriaBean")
 	private CriteriaBean criteriaBean;
+	
+	@EJB(mappedName="java:app/property-for-sales/MessageBeanImp!bean.MessageBean")
+	private MessageBean msgBean;
 	
 	@Secured("ROLE_ADMIN")
 	@RequestMapping(value="/api/users", method=RequestMethod.GET, produces="application/json")
@@ -120,7 +126,41 @@ public class UserCtrl {
 		return user.getCriteria();
 	}
 	
+	@RequestMapping(value="/api/user/advert/contact", method=RequestMethod.POST, produces="application/json")
+	public ResponseEntity<String> sendMsg(@RequestBody Contact contact){
+		User user=userBean.findById(contact.getIdReceiver());
+		if(user==null){
+			return new ResponseEntity("User not found",HttpStatus.BAD_REQUEST);
+		}else{
+			Advert advert=advertBean.findById(contact.getIdAdvert());
+			if(advert!=null){
+				Message msg=new Message();
+				msg.setAdvert(advert);
+				msg.setEmail(contact.getEmailSender());
+				msg.setMessage(contact.getMsgSender());
+				msg.setName(contact.getNameSender());
+				msg.setPhone(contact.getPhoneSender());
+				msgBean.create(msg);
+				user.getMessages().add(msg);
+				userBean.update(user);
+				return new ResponseEntity("Message successfuly sent !",HttpStatus.OK); 
+			}
+			return new ResponseEntity("Advert not found",HttpStatus.BAD_REQUEST);
+		}
+	}
 	
-	
+	@Secured({"ROLE_USER","ROLE_ADMIN"})
+	@RequestMapping(value="/api/user/messages", method=RequestMethod.GET, produces="application/json")
+	public ResponseEntity<List<Message>> getMessages(){
+		Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
+		String email=authentication.getName();
+		if(email.compareTo("anonymousUser")==0){
+			return new ResponseEntity(null, HttpStatus.UNAUTHORIZED);
+		}else{
+			User user=userBean.findByEmail(email);
+			return new ResponseEntity(user.getMessages(), HttpStatus.OK);
+		}
+		
+	}
 	
 }

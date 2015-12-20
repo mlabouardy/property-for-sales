@@ -5,6 +5,8 @@ import java.util.List;
 import javax.ejb.EJB;
 
 import org.springframework.beans.factory.annotation.Required;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -41,8 +43,12 @@ public class AdvertCtrl {
 	}
 	
 	@RequestMapping(value="/adverts/{id}", method=RequestMethod.GET, produces="application/json")
-	public Advert getAdvert(@PathVariable int id){
-		return advertBean.findById(id);
+	public ResponseEntity<Advert> getAdvert(@PathVariable int id){
+		Advert advert=advertBean.findById(id);
+		if(advert!=null){
+			return new ResponseEntity(advert,HttpStatus.OK);
+		}
+		return new ResponseEntity(null,HttpStatus.BAD_REQUEST);
 	}
 	
 	@RequestMapping(value="/user/{id}/adverts", method=RequestMethod.GET, produces="application/json")

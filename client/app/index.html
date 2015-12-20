@@ -51,8 +51,9 @@
                 <li data-ng-class="{active: isActive('/dashboard')}"><a href="#/dashboard">Dashboard</a></li>
               </ul>
               <ul class="nav navbar-nav navbar-right">
-                <li data-ng-class="{active: isActive('/profile')}"><a href="#/profile">Profile</a></li>
-                <li data-ng-class="{active: isActive('/logout')}"><a href="#/logout">Logout</a></li>
+                <li data-ng-class="{active: isActive('/messages')}"><a href="#/messages"><i class="fa fa-comment"></i> Mailbox</a></li>
+                <li data-ng-class="{active: isActive('/profile')}"><a href="#/profile"><i class="fa fa-user"></i> Profile</a></li>
+                <li data-ng-class="{active: isActive('/logout')}"><a href="#/logout"><i class="fa fa-sign-out"></i> Logout</a></li>
               </ul>
             </div>
           </div><!--/.nav-collapse -->
@@ -99,6 +100,10 @@
      <script src="scripts/controllers/user-adverts.js"></script>
      <script src="scripts/controllers/admin.js"></script>
      <script src="scripts/services/upload.js"></script>
+     <script src="scripts/controllers/contact.js"></script>
+     <script src="scripts/controllers/advert-not-exist.js"></script>
+     <script src="scripts/controllers/messages.js"></script>
+     <script src="scripts/services/contact.js"></script>
      <!-- endbuild -->
    </body>
    </html>

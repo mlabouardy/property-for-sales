@@ -50,9 +50,10 @@
      <div class="panel panel-primary">
       <div class="panel-heading">
         Owner
+        <a class="btn btn-success pull-right btn-xs" href="#/contact/{{advert.id}}">Contact</a>
       </div>
       <div class="panel-body">
-        <img class="img-circle" ng-src="http://images.neozone.org/2011/02/stormtrooper.jpg" width="40px"/>
+        <img class="img-circle" ng-src="http://localhost:3000/{{advert.owner.picture[0].link}}" width="40px"/>
         {{advert.owner.firstName}} {{advert.owner.lastName}}<br/><br/>
         <ul class="list-group">
           <li class="list-group-item">

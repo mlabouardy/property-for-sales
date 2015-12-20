@@ -1,0 +1,9 @@
+<resources>
+  <Resource id="myDb" type="javax.sql.DataSource">
+    JdbcDriver = com.mysql.jdbc.Driver
+    JdbcUrl = jdbc:mysql://51.254.132.239:3306/test
+    UserName = root
+    Password = admin
+    JtaManaged = true
+  </Resource>
+</resources>

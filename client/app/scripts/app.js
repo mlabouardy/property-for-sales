@@ -70,6 +70,20 @@ angular
         controller: 'AdminCtrl',
         title: 'Admin Board'
       })
+      .when('/contact/:id', {
+        templateUrl: 'views/contact.html',
+        controller: 'ContactCtrl',
+        title:'Contact'
+      })
+      .when('/advert-not-exist', {
+        templateUrl: 'views/advert-not-exist.html',
+        controller: 'AdvertNotExistCtrl'
+      })
+      .when('/messages', {
+        templateUrl: 'views/messages.html',
+        controller: 'MessagesCtrl',
+        title: 'Mailbox'
+      })
       .otherwise({
         redirectTo: '/'
       });

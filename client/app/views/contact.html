@@ -1,0 +1,30 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="alert alert-success">
+				<i class="fa fa-info-circle"></i> {{detail.type}}, {{detail.location}}, {{detail.price}} euros
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="form-group">
+				<label>Name</label>
+				<input type="text" ng-model="name" class="form-control">
+			</div>
+			<div class="form-group">
+				<label>Email</label>
+				<input type="text" ng-model="email" class="form-control">
+			</div>
+			<div class="form-group">
+				<label>Phone</label>
+				<input type="text" ng-model="phone" class="form-control">
+			</div>
+			<div class="form-group">
+				<label>Message</label>
+				<textarea class="form-control" rows="4" ng-model="message"></textarea>
+			</div>
+			<input type="submit" class="btn btn-success btn-block" value="Send" ng-click="send()"/>
+		</div>
+	</div>
+</div>
