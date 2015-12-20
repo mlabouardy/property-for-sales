@@ -17,7 +17,8 @@ angular
     'ngSanitize',
     'ngTouch',
     'base64',
-    'angularUtils.directives.dirPagination'
+    'angularUtils.directives.dirPagination',
+    'ui.bootstrap'
   ])
   .config(function ($routeProvider) {
     $routeProvider

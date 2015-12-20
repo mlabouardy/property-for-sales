@@ -11,8 +11,9 @@
  .controller('AdViewCtrl', function ($routeParams, $scope, Adverts, $http, $location) {
  	$scope.pageUrl=$location.absUrl();
  	Adverts.findById($routeParams.id).success(function(data){
+ 		$scope.myInterval = 3000;
+  		$scope.noWrapSlides = false;
  		$scope.advert=data;
-
  		var location=$scope.advert.location;
  		$http.get(GOOGLE_MAP+location)
  		.success(function(data){
