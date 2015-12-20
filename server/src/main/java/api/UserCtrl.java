@@ -1,6 +1,7 @@
 package api;
 
 import java.lang.annotation.Annotation;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import bean.AdvertBean;
 import bean.CriteriaBean;
+import bean.FavoriteBean;
 import bean.MessageBean;
 import bean.PictureBean;
 import bean.RoleBean;
@@ -27,6 +29,7 @@ import bean.UserBean;
 import model.Advert;
 import model.Contact;
 import model.Criteria;
+import model.Favorite;
 import model.Message;
 import model.Picture;
 import model.Role;
@@ -52,6 +55,10 @@ public class UserCtrl {
 	
 	@EJB(mappedName="java:app/property-for-sales/MessageBeanImp!bean.MessageBean")
 	private MessageBean msgBean;
+	
+	@EJB(mappedName="java:app/property-for-sales/FavoriteBeanImp!bean.FavoriteBean")
+	private FavoriteBean favoriteBean;
+	
 	
 	@Secured("ROLE_ADMIN")
 	@RequestMapping(value="/api/users", method=RequestMethod.GET, produces="application/json")
@@ -187,5 +194,34 @@ public class UserCtrl {
 		userBean.update(user);
 		msgBean.delete(id);
 		return new ResponseEntity<>("Message successfuly deleted !",HttpStatus.OK);
+	}
+	
+	@Secured({"ROLE_USER","ROLE_ADMIN"})
+	@RequestMapping(value="/api/user/favorites/create/{id}", method=RequestMethod.GET, produces="text/plain")
+	public ResponseEntity<String> addFavorite(@PathVariable int id){
+		Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
+		String email=authentication.getName();
+		User user=userBean.findByEmail(email);
+		Advert advert=advertBean.findById(id);
+		if(advert==null){
+			return new ResponseEntity<>("Advert not found !",HttpStatus.BAD_REQUEST);
+		}
+		Favorite favorite=user.getFavorite();
+		if(favorite==null){
+			favorite=new Favorite();
+			List<Advert> adverts=new ArrayList<>();
+			favorite.setAdverts(adverts);
+			favoriteBean.create(favorite);
+		}else{
+			List<Advert> adverts=favorite.getAdverts();
+			if(adverts==null)
+				adverts=new ArrayList<>();
+			adverts.add(advert);
+			favorite.setAdverts(adverts);
+			favoriteBean.update(favorite);
+		}
+		user.setFavorite(favorite);
+		userBean.update(user);
+		return new ResponseEntity<>("Successfuly added to favorites !",HttpStatus.OK);
 	}
 }

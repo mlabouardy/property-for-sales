@@ -34,6 +34,9 @@ angular.module('clientApp')
         },
         getCriteria:function(){
             return $http.get(SERVER_URL+'api/criteria');
+        },
+        addFavorite:function(id){
+           return $http.get(SERVER_URL+'api/user/favorites/create/'+id); 
         }
     }
   });

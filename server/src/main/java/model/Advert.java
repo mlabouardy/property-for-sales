@@ -16,7 +16,7 @@ import javax.persistence.OneToOne;
 public class Advert {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
 	@OneToOne

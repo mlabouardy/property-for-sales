@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -41,7 +42,11 @@ public class User {
 	@OneToMany
 	private List<Message> messages;
 	
-	public User(){}
+	@OneToOne
+	private Favorite favorite;
+	
+	public User(){
+	}
 	
 	public int getId() {
 		return id;
@@ -138,6 +143,16 @@ public class User {
 	public void setMessages(List<Message> messages) {
 		this.messages = messages;
 	}
+
+	public Favorite getFavorite() {
+		return favorite;
+	}
+
+	public void setFavorite(Favorite favorite) {
+		this.favorite = favorite;
+	}
+
+	
 	
 	
 	

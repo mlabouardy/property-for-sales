@@ -8,7 +8,7 @@
  * Controller of the clientApp
  */
 angular.module('clientApp')
-  .controller('SearchCtrl', function ($scope, Adverts, Authentication, User) {
+  .controller('SearchCtrl', function ($scope, Adverts, Authentication, User, $location) {
      Adverts.getAdverts().success(function(data){
      	$scope.adverts=data;
      });
@@ -23,4 +23,17 @@ angular.module('clientApp')
      		});
      }
  
+    $scope.addFavorite=function(id){
+       if(Authentication.isConnected()){
+            User.addFavorite(id)
+                .success(function(msg){
+                    toastr.success(msg, 'Property for sales');
+                })
+                .error(function(msg){
+                    toastr.warning(msg, 'Property for sales');
+                });
+       }else{
+            $location.path('/login');
+       }
+    }
   });
