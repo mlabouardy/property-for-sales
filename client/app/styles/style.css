@@ -1,5 +1,8 @@
 body{
 	font-family: Futura,Trebuchet MS,Arial,sans-serif; 
+  background-image:url(../images/wallpaper.jpg);
+  background-size: 100%;
+
 }
 
 .price{
