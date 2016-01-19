@@ -43,6 +43,9 @@ angular.module('clientApp')
         },
         removeFavorite:function(id){
             return $http.get(SERVER_URL+'api/user/favorites/'+id+'/delete'); 
+        },
+        forgotPassword:function(email){
+           return $http.post(SERVER_URL+'forgotpassword',email);  
         }
     }
   });

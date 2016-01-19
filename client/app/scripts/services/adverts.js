@@ -30,6 +30,9 @@ angular.module('clientApp')
       },
       removeUserAdvert:function(id_user, id_advert){
         return $http.get(SERVER_URL+'api/user/'+id_user+'/adverts/'+id_advert+'/delete');
+      },
+      mostRecents:function(){
+        return $http.get(SERVER_URL+'recents');
       }
   	};
   });

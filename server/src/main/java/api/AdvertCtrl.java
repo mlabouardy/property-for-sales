@@ -113,5 +113,9 @@ public class AdvertCtrl {
 		advertBean.createAdvert(advert);
 	}
 	
+	@RequestMapping(value="/recents", method=RequestMethod.GET, produces="application/json")
+	public List<Advert> mostRecents(){
+		return advertBean.getMostRecents();
+	}
 
 }

@@ -1,5 +1,7 @@
 package service;
 
+import java.util.Date;
+
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 
@@ -84,6 +86,7 @@ public class InitService {
 		advert.getPictures().add(pic1);
 		advert.getPictures().add(pic2);
 		advert.setSurface("200");
+		advert.setCreated_at(new Date());
 		advertBean.createAdvert(advert);
 		
 	}

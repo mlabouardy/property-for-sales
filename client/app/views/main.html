@@ -1,10 +1,34 @@
-<div class="container-fluid"> 
-<div class="jumbotron">
-  <h1>Property for sales</h1>
-  <p>
-    Find your perfect property in France, search a wide range of properties for sale in France with Rightmove.
-  <p>
-    <a class="btn btn-lg btn-primary" href="#/search" role="button">Find your house</a>
-  </p>
-</div>
-</div>
+	<div class="container-fluid"> 
+		<div class="jumbotron">
+			<h1>Property for sales</h1>
+			<p>
+				Find your perfect property in France, search a wide range of properties for sale in France with Rightmove.
+				<p>
+					<a class="btn btn-lg btn-primary" href="#/search" role="button">Find your house</a>
+				</p>
+			</div>
+			<div dir-paginate="advert in adverts| itemsPerPage: 5">
+				<div class="row">
+					<div class="col-md-12">
+						<a class="btn btn-danger btn-xs pull-right" ng-click="addFavorite(advert.id)"><i class="fa fa-heart"></i> Add to favorite</a>
+					</div>
+				</div>
+				<div class="row advert">
+					<div class="col-md-3">
+						<div width="250" height="150">
+							<img ng-src="http://localhost:3000/{{advert.pictures[0].link}}" style="max-width:100%;max-height:100%">
+						</div><br/>
+						<span class="badge">{{advert.pictures.length}}</span>
+					</div>
+					<div class="col-md-6">
+						<h5><a ng-href="#/ad-view/{{advert.id}}">{{advert.type}}, {{advert.location}}</a></h5>
+						<small>{{advert.description}}</small>
+					</div>
+					<div class="col-md-3">
+						<div class="price"><i class="fa fa-money"></i> {{advert.price}} $</div>
+						<div class="surface">{{advert.surface}} m<sup>2</sup></div>
+					</div>
+				</div><br/>
+			</div>
+			<dir-pagination-controls></dir-pagination-controls>
+		</div>

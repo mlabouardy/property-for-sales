@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -11,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -29,6 +32,9 @@ public class Advert {
 	private double price;
 	private String surface;
 	private String location;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date created_at;
 	
 	@OneToMany(fetch=FetchType.EAGER)
 	private List<Picture> pictures;
@@ -91,6 +97,15 @@ public class Advert {
 	public void setType(String type) {
 		this.type = type;
 	}
+
+	public Date getCreated_at() {
+		return created_at;
+	}
+
+	public void setCreated_at(Date created_at) {
+		this.created_at = created_at;
+	}
+	
 	
 	
 	

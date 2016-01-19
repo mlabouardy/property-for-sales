@@ -8,5 +8,8 @@
  * Controller of the clientApp
  */
 angular.module('clientApp')
-  .controller('MainCtrl', function () {
+  .controller('MainCtrl', function (Adverts, $scope) {
+  	Adverts.mostRecents().success(function(data){
+     	$scope.adverts=data;
+     });
   });

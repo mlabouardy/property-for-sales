@@ -1,7 +1,7 @@
 <resources>
   <Resource id="myDb" type="javax.sql.DataSource">
     JdbcDriver = com.mysql.jdbc.Driver
-    JdbcUrl = jdbc:mysql://51.254.132.239:3306/test
+    JdbcUrl = jdbc:mysql://localhost/alda
     UserName = root
     Password = admin
     JtaManaged = true

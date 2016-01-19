@@ -14,5 +14,6 @@ public interface AdvertBean {
 	public Advert findById(int id);
 	public List<Advert> getAdvertsByUserId(int id);
 	public void remove(Advert advert);
+	public List<Advert> getMostRecents();
 	
 }

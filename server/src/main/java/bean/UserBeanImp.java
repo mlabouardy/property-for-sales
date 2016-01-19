@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -50,7 +51,10 @@ public class UserBeanImp implements UserBean{
 	public User findByEmail(String email) {
 		Query query=em.createQuery("SELECT u FROM User u WHERE u.email=:email");
 		query.setParameter("email", email);
-		return (User) query.getSingleResult();
+		if(query.getResultList().size()==0)
+			return null;
+		else
+			return (User)query.getSingleResult();
 	}
 
 	@Override

@@ -46,4 +46,11 @@ public class AdvertBeanImp implements AdvertBean{
 		em.remove(advert);
 	}
 
+	@Override
+	public List<Advert> getMostRecents() {
+		Query query=em.createQuery("SELECT a FROM Advert a ORDER BY a.created_at DESC",Advert.class);
+		query.setMaxResults(5);
+		return query.getResultList();
+	}
+
 }

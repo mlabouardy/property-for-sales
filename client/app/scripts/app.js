@@ -90,6 +90,11 @@ angular
         controller: 'FavoritesCtrl',
         title: 'List of favorites'
       })
+      .when('/forgot-password', {
+        templateUrl: 'views/forgot-password.html',
+        controller: 'ForgotPasswordCtrl',
+        title: 'Forgot password'
+      })
       .otherwise({
         redirectTo: '/'
       });

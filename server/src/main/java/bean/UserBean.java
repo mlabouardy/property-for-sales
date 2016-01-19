@@ -24,5 +24,6 @@ public interface UserBean {
 	public void update(User user);
 
 	public void delete(User user);
+	
 
 }

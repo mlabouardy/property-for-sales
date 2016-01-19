@@ -7,6 +7,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ws.rs.Path;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
@@ -35,6 +36,7 @@ import model.Message;
 import model.Picture;
 import model.Role;
 import model.User;
+import service.EmailService;
 
 @RestController
 public class UserCtrl {
@@ -59,6 +61,8 @@ public class UserCtrl {
 	
 	@EJB(mappedName="java:app/property-for-sales/FavoriteBeanImp!bean.FavoriteBean")
 	private FavoriteBean favoriteBean;
+	
+	
 	
 	
 	@Secured("ROLE_ADMIN")
