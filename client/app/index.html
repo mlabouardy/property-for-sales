@@ -14,100 +14,124 @@
   <!-- build:css(.tmp) styles/main.css -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/custom.css">
+  <link rel="stylesheet" href="styles/animate.css">
   <link rel="stylesheet" href="styles/style.css">
   <!-- endbuild -->
 </head>
-<body ng-app="clientApp">
-    <!--[if lte IE 8]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-      <![endif]-->
+<body ng-app="clientApp" class="gray-bg">
+  <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0" ng-controller="MenuCtrl">
+    <div class="navbar-header">
+      <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#/"><i class="fa fa-home"></i> </a>
+    </div>
+    <div ng-if="!isConnected()">
+      <ul class="nav navbar-top-links navbar-right">
+        <li>
+          <span class="m-r-sm text-muted welcome-message">Welcome to Property for sales.</span>
+        </li>
+        <li>
+          <a href="#/search">
+            <i class="fa fa-search"></i> Search
+          </a>
+        </li>
+        <li>
+          <a href="#/register">
+            <i class="fa fa-user-plus"></i> Register
+          </a>
+        </li>
+        <li>
+          <a href="#/login">
+            <i class="fa fa-sign-out"></i> Login
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div ng-if="isConnected()">
+      <ul class="nav navbar-top-links navbar-right">
+        <li>
+          <span class="m-r-sm text-muted welcome-message">Welcome to Property for sales.</span>
+        </li>
+       <li>
+        <a href="#/dashboard">
+          <i class="fa fa-home"></i> Dashboard
+        </a>
+      </li>
+      <li>
+          <a href="#/search">
+            <i class="fa fa-search"></i> Search
+          </a>
+        </li>
+      <li>
+        <a href="#/favorites">
+          <i class="fa fa-heart"></i> Favorites
+        </a>
+      </li>
+      <li>
+        <a href="#/messages">
+          <i class="fa fa-comment"></i> Mailbox
+        </a>
+      </li>
+      <li>
+        <a href="#/profile">
+          <i class="fa fa-user"></i> Profile
+        </a>
+      </li>
+      <li>
+        <a href="#/logout">
+          <i class="fa fa-sign-out"></i> Logout
+        </a>
+      </li></ul>
+    </div>
+  </nav>
 
-      <nav class="navbar navbar-default navbar-custom">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#/">Property for Sales</a>
-          </div>
-          <div id="navbar" class="navbar-collapse collapse" ng-controller="MenuCtrl">
-            <div ng-if="!isConnected()">
-              <ul class="nav navbar-nav">
-                <li data-ng-class="{active: isActive('/')}"><a href="#/">Home</a></li>
-                <li data-ng-class="{active: isActive('/search')}"><a href="#/search">Search</a></li>
-              </ul>
-              <ul class="nav navbar-nav navbar-right">
-                <li data-ng-class="{active: isActive('/login')}"><a href="#/login">Login</a></li>
-                <li data-ng-class="{active: isActive('/register')}"><a href="#/register">Register</a></li>
-              </ul>
-            </div>
-            <div ng-if="isConnected()">
-              <ul class="nav navbar-nav">
-                <li data-ng-class="{active: isActive('/')}"><a href="#/">Home</a></li>
-                <li data-ng-class="{active: isActive('/search')}"><a href="#/search">Search</a></li>
-                <li data-ng-class="{active: isActive('/dashboard')}"><a href="#/dashboard">Dashboard</a></li>
-                <li data-ng-class="{active: isActive('/favorites')}"><a href="#/favorites"><i class="fa fa-heart"></i> Favorites</a></li>
-              </ul>
-              <ul class="nav navbar-nav navbar-right">
-                <li data-ng-class="{active: isActive('/messages')}"><a href="#/messages"><i class="fa fa-comment"></i> Mailbox</a></li>
-                <li data-ng-class="{active: isActive('/profile')}"><a href="#/profile"><i class="fa fa-user"></i> Profile</a></li>
-                <li data-ng-class="{active: isActive('/logout')}"><a href="#/logout"><i class="fa fa-sign-out"></i> Logout</a></li>
-              </ul>
-            </div>
-          </div><!--/.nav-collapse -->
-        </div><!--/.container-fluid -->
-      </nav>
 
-      <div ng-view=""></div>
+  <div ng-view=""></div>
 
-     <!-- build:js(.) scripts/vendor.js -->
-     <!-- bower:js -->
-     <script src="bower_components/jquery/dist/jquery.js"></script>
-     <script src="bower_components/angular/angular.js"></script>
-     <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
-     <script src="bower_components/angular-animate/angular-animate.js"></script>
-     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-     <script src="bower_components/angular-resource/angular-resource.js"></script>
-     <script src="bower_components/angular-route/angular-route.js"></script>
-     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-     <script src="bower_components/angular-touch/angular-touch.js"></script>
-     <script src="bower_components/angular-base64/angular-base64.js"></script>
-     <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
-     <script src="bower_components/angularUtils-pagination/dirPagination.js"></script>
-     <script src="bower_components/toastr/toastr.js"></script>
-     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-     <!-- endbower -->
-     <!-- endbuild -->
+  <!-- build:js(.) scripts/vendor.js -->
+  <!-- bower:js -->
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.js"></script>
+  <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+  <script src="bower_components/angular-resource/angular-resource.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+  <script src="bower_components/angular-touch/angular-touch.js"></script>
+  <script src="bower_components/angular-base64/angular-base64.js"></script>
+  <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
+  <script src="bower_components/angularUtils-pagination/dirPagination.js"></script>
+  <script src="bower_components/toastr/toastr.js"></script>
+  <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+  <!-- endbower -->
+  <!-- endbuild -->
 
-     <!-- build:js({.tmp,app}) scripts/scripts.js -->
-     <script src="http://markusslima.github.io/bootstrap-filestyle/js/bootstrap-filestyle.min.js"></script>
-     <script src="http://maps.google.com/maps/api/js?sensor=false"></script> 
-     <script src="scripts/constants.js"></script>
-     <script src="scripts/app.js"></script>
-     <script src="scripts/controllers/main.js"></script>
-     <script src="scripts/controllers/register.js"></script>
-     <script src="scripts/controllers/login.js"></script>
-     <script src="scripts/controllers/menu.js"></script>
-     <script src="scripts/controllers/search.js"></script>
-     <script src="scripts/controllers/dashboard.js"></script>
-     <script src="scripts/controllers/ad-view.js"></script>
-     <script src="scripts/services/adverts.js"></script>
-     <script src="scripts/services/authentication.js"></script>
-     <script src="scripts/controllers/logout.js"></script>
-     <script src="scripts/services/user.js"></script>
-     <script src="scripts/controllers/profile.js"></script>
-     <script src="scripts/controllers/user-adverts.js"></script>
-     <script src="scripts/controllers/admin.js"></script>
-     <script src="scripts/services/upload.js"></script>
-     <script src="scripts/controllers/contact.js"></script>
-     <script src="scripts/controllers/advert-not-exist.js"></script>
-     <script src="scripts/controllers/messages.js"></script>
-     <script src="scripts/services/contact.js"></script>
-     <script src="scripts/controllers/favorites.js"></script>
-     <script src="scripts/controllers/forgot-password.js"></script>
-     <!-- endbuild -->
-   </body>
-   </html>
+  <!-- build:js({.tmp,app}) scripts/scripts.js -->
+  <script src="http://markusslima.github.io/bootstrap-filestyle/js/bootstrap-filestyle.min.js"></script>
+  <script src="http://maps.google.com/maps/api/js?sensor=false"></script> 
+  <script src="scripts/constants.js"></script>
+  <script src="scripts/app.js"></script>
+  <script src="scripts/controllers/main.js"></script>
+  <script src="scripts/controllers/register.js"></script>
+  <script src="scripts/controllers/login.js"></script>
+  <script src="scripts/controllers/menu.js"></script>
+  <script src="scripts/controllers/search.js"></script>
+  <script src="scripts/controllers/dashboard.js"></script>
+  <script src="scripts/controllers/ad-view.js"></script>
+  <script src="scripts/services/adverts.js"></script>
+  <script src="scripts/services/authentication.js"></script>
+  <script src="scripts/controllers/logout.js"></script>
+  <script src="scripts/services/user.js"></script>
+  <script src="scripts/controllers/profile.js"></script>
+  <script src="scripts/controllers/user-adverts.js"></script>
+  <script src="scripts/controllers/admin.js"></script>
+  <script src="scripts/services/upload.js"></script>
+  <script src="scripts/controllers/contact.js"></script>
+  <script src="scripts/controllers/advert-not-exist.js"></script>
+  <script src="scripts/controllers/messages.js"></script>
+  <script src="scripts/services/contact.js"></script>
+  <script src="scripts/controllers/favorites.js"></script>
+  <script src="scripts/controllers/forgot-password.js"></script>
+  <!-- endbuild -->
+</body>
+</html>

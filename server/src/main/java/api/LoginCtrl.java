@@ -35,6 +35,7 @@ public class LoginCtrl {
 		Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
 		Role role=new Role();
 		role.setName(authentication.getAuthorities().iterator().next().toString());
+		System.out.println("Login");
 		return role;
 	}
 	
