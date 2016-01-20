@@ -9,8 +9,9 @@
  */
 angular.module('clientApp')
   .controller('ProfileCtrl', function (Authentication, $location, $scope, User, Upload, $cookieStore, $base64, $http) {
-	   if(Authentication.isConnected()){
-	    	User.getProfile().success(function(profile){
+	   Authentication.isConnected()
+	   	.success(function(){
+	   		User.getProfile().success(function(profile){
 	    		$scope.profile=profile;
 	    	});
 
@@ -76,8 +77,10 @@ angular.module('clientApp')
 	    	$scope.password_changed=function(){
 	    		$scope.password=true;
 	    	}
+	   	})
+	   	.error(function(){
+	   		$location.path('/login');
+	   	});
 
-	    }else{
-	    	$location.path('/login');
-	    }
+	   
   });

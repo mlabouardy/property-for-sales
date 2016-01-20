@@ -9,9 +9,12 @@
  */
  angular.module('clientApp')
  .controller('LoginCtrl', function ($scope, $base64, Authentication, $location, $cookieStore) {
-
- 	if(!Authentication.isConnected()){
- 		$scope.login = function(){
+ 	Authentication.isConnected()
+ 		.success(function(){
+ 			Authentication.redirect();
+ 		})
+ 		.error(function(){
+ 			$scope.login = function(){
  			var authdata = $base64.encode($scope.username + ':' + $scope.password);
  			$cookieStore.put('authdata',authdata);
  			Authentication.login()
@@ -23,7 +26,5 @@
  				$scope.error="Error";
  			});
  		};
- 	}else{
- 		Authentication.redirect();
- 	}
+ 		});
  });

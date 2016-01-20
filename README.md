@@ -1,4 +1,13 @@
 # Property-for-sales
+	
+	- Server: EJB/Spring Security/Spring MVC/Mockito/Hiberante/MySQL
+	- Client: AngularJS/HTML5/JavaScript/CSS/Bootstrap
+	- Cloud: NodeJS/ExpressJS/Multr
+	- Deploy: Docker
+
+# Screenshot
+
+![Alt text](screenshot.png "Screenshot of the client app")
 
 # Public:
 	- /adverts -> GET -> List of adverts 

@@ -4,7 +4,8 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import model.Favorite;
+import dao.FavoriteBean;
+import entity.Favorite;
 
 @Stateless
 public class FavoriteBeanImp implements FavoriteBean{

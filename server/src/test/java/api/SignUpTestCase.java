@@ -17,30 +17,30 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import bean.AdvertBean;
-import bean.CriteriaBean;
-import bean.RoleBean;
-import bean.UserBean;
 import builder.UserBuilder;
-import model.User;
+import dao.AdvertBean;
+import dao.CriteriaBean;
+import dao.RoleBean;
+import dao.UserBean;
+import entity.User;
 
 public class SignUpTestCase {
 private MockMvc mockMvc;
 	
 	@Mock
-	@EJB(mappedName="java:app/property-for-sales/UserBeanImp!bean.UserBean")
+	@EJB(mappedName="java:app/property-for-sales/UserBeanImp!dao.UserBean")
 	private UserBean userBean;
 	
 	@Mock
-	@EJB(mappedName="java:app/property-for-sales/CriteriaBeanImp!bean.CriteriaBean")
+	@EJB(mappedName="java:app/property-for-sales/CriteriaBeanImp!dao.CriteriaBean")
 	private CriteriaBean criteriaBean;
 	
 	@Mock
-	@EJB(mappedName="java:app/property-for-sales/RoleBeanImp!bean.RoleBean")
+	@EJB(mappedName="java:app/property-for-sales/RoleBeanImp!dao.RoleBean")
 	private RoleBean roleBean;
 	
 	@InjectMocks
-	private UserCtrl userCtrl;
+	private UserResource userCtrl;
 	
 	@Before
 	public void setUp(){

@@ -25,21 +25,21 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
 
-import bean.AdvertBean;
-import bean.UserBean;
 import builder.UserBuilder;
-import model.User;
+import dao.AdvertBean;
+import dao.UserBean;
+import entity.User;
 
 public class AdvertsTestCase {
 	
 	private MockMvc mockMvc;
 	
 	@Mock
-	@EJB(mappedName="java:app/property-for-sales/AdvertBeanImp!bean.AdvertBean")
+	@EJB(mappedName="java:app/property-for-sales/AdvertBeanImp!dao.AdvertBean")
 	private AdvertBean advertBean;
 	
 	@InjectMocks
-	private AdvertCtrl advertCtrl;
+	private AdvertResource advertCtrl;
 	
 	@Before
 	public void setUp(){

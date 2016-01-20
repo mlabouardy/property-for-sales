@@ -4,7 +4,8 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import model.Message;
+import dao.MessageBean;
+import entity.Message;
 
 @Stateless
 public class MessageBeanImp implements MessageBean{

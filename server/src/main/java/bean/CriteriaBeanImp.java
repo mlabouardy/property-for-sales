@@ -4,7 +4,8 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import model.Criteria;
+import dao.CriteriaBean;
+import entity.Criteria;
 
 
 @Stateless
@@ -15,7 +16,8 @@ public class CriteriaBeanImp implements CriteriaBean{
 
 	@Override
 	public void create(Criteria criteria) {
-		em.persist(criteria);
+		em.merge(criteria);
+		em.flush();
 	}
 
 }

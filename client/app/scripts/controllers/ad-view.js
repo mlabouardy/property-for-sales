@@ -17,7 +17,6 @@
  		var location=$scope.advert.location;
  		$http.get(GOOGLE_MAP+location)
  		.success(function(data){
- 			console.log(data.results[0].geometry.location);
  			var lat=data.results[0].geometry.location.lat;
  			var lng=data.results[0].geometry.location.lng;
 

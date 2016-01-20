@@ -1,14 +1,17 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
-			<div class="alert alert-success">
-				<i class="fa fa-info-circle"></i> {{detail.type}}, {{detail.location}}, {{detail.price}} euros
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-12">
-			<div class="form-group">
+	<div class="ibox float-e-margins">
+				<div class="ibox-title"> 
+					<h5>Contact</h5>
+					<div class="button-group pull-right">
+			            <span class="label label-primary pull-right">{{detail.type}}</span>
+			            <span class="label label-danger pull-right">{{detail.location}}</span>
+			            <span class="label label-success pull-right">{{detail.price}} Euros</span>
+			          </div>
+				</div>
+				<div class="ibox-content">
+					<div class="form-group">
 				<label>Name</label>
 				<input type="text" ng-model="name" class="form-control">
 			</div>
@@ -24,7 +27,9 @@
 				<label>Message</label>
 				<textarea class="form-control" rows="4" ng-model="message"></textarea>
 			</div>
-			<input type="submit" class="btn btn-success btn-block" value="Send" ng-click="send()"/>
+			<input type="submit" class="btn btn-primary btn-block" value="Send" ng-click="send()"/>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

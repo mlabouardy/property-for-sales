@@ -9,7 +9,8 @@ import javax.persistence.Query;
 
 import org.hibernate.Session;
 
-import model.Advert;
+import dao.AdvertBean;
+import entity.Advert;
 
 @Stateless
 public class AdvertBeanImp implements AdvertBean{
@@ -49,7 +50,7 @@ public class AdvertBeanImp implements AdvertBean{
 	@Override
 	public List<Advert> getMostRecents() {
 		Query query=em.createQuery("SELECT a FROM Advert a ORDER BY a.created_at DESC",Advert.class);
-		query.setMaxResults(5);
+		query.setMaxResults(4);
 		return query.getResultList();
 	}
 

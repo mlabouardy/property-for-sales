@@ -2,7 +2,7 @@ package builder;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import model.User;
+import entity.User;
 
 public class UserBuilder {
 	private int id;

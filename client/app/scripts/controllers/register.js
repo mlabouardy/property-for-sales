@@ -9,10 +9,12 @@
  */
 angular.module('clientApp')
   .controller('RegisterCtrl', function (Authentication, $location, $scope, User) {
-    if(Authentication.isConnected()){
-    	$location.path('/dashboard');
-    }else{
-    	$scope.register=function(){
+    Authentication.isConnected()
+        .success(function(){
+            $location.path('/dashboard');
+        })
+        .error(function(){
+            $scope.register=function(){
             var data={
                 firstName: $scope.firstName,
                 lastName: $scope.lastName,
@@ -21,14 +23,14 @@ angular.module('clientApp')
                 address: "",
                 phone: ""
             };
-    		User.register(data)
-    			.success(function(data){
-    				$location.path('/login');
-    			})
-    			.error(function(){
-    				$scope.error="Error";
-    			});
+            User.register(data)
+                .success(function(data){
+                    $location.path('/login');
+                })
+                .error(function(){
+                    $scope.error="Error";
+                });
        
-    	}
-    }
+        }
+    });
   });

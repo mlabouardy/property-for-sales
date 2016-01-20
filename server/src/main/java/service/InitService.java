@@ -1,94 +1,183 @@
 package service;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Random;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import bean.AdvertBean;
-import bean.PictureBean;
-import bean.RoleBean;
-import bean.UserBean;
-import model.Advert;
-import model.Picture;
-import model.Role;
-import model.User;
+import dao.AdvertBean;
+import dao.FavoriteBean;
+import dao.MessageBean;
+import dao.PictureBean;
+import dao.RoleBean;
+import dao.UserBean;
+import entity.Advert;
+import entity.Favorite;
+import entity.Message;
+import entity.Picture;
+import entity.Role;
+import entity.User;
 
 @Service
 @Transactional
 public class InitService {
 	
-	@EJB(mappedName="java:app/property-for-sales/UserBeanImp!bean.UserBean")
+	@EJB(mappedName="java:app/property-for-sales/UserBeanImp!dao.UserBean")
 	private UserBean userBean;
 	
-	@EJB(mappedName="java:app/property-for-sales/AdvertBeanImp!bean.AdvertBean")
+	@EJB(mappedName="java:app/property-for-sales/AdvertBeanImp!dao.AdvertBean")
 	private AdvertBean advertBean;
 	
-	@EJB(mappedName="java:app/property-for-sales/PictureBeanImp!bean.PictureBean")
+	@EJB(mappedName="java:app/property-for-sales/PictureBeanImp!dao.PictureBean")
 	private PictureBean pictureBean;
 	
-	@EJB(mappedName="java:app/property-for-sales/RoleBeanImp!bean.RoleBean")
+	@EJB(mappedName="java:app/property-for-sales/RoleBeanImp!dao.RoleBean")
 	private RoleBean roleBean;
+	
+	@EJB(mappedName="java:app/property-for-sales/FavoriteBeanImp!dao.FavoriteBean")
+	private FavoriteBean favoriteBean;
+	
+	@EJB(mappedName="java:app/property-for-sales/MessageBeanImp!dao.MessageBean")
+	private MessageBean msgBean;
+	
+	private String[] cities={"Bordeaux", "Paris", "Nantes","Rennes","Toulouse","Nice","Lyon"};
+	private String[] type={"T1","Flat","T2","T4","Studio"};
 	
 	@PostConstruct
 	public void init(){
-		Role role_user=new Role();
-		role_user.setName("ROLE_USER");
-		roleBean.create(role_user);
+		//Create roles
+		Role role_user=createRole("ROLE_USER");
+		Role role_admin=createRole("ROLE_ADMIN");
 		
-		Role role_admin=new Role();
-		role_admin.setName("ROLE_ADMIN");
-		roleBean.create(role_admin);
+		//Create profile pictures
+		Picture rootPic=createPicture("admin.png");
+		Picture user1Pic=createPicture("user1.png");
+		Picture user2Pic=createPicture("user2.png");
 		
-		Picture userPic=new Picture();
-		userPic.setLink("1cc126a5f30a1dfd95908d14d908e6501450012301871.png");
-		pictureBean.create(userPic);
+		//Create users
+		User root=createUser(role_admin, rootPic, "Root", "Admin", "root@labouardy.com", "rootroot", "AVENUE COLLEGNO BAT A NUM 509", "0664435680");
+		User mohamed=createUser(role_user, user1Pic, "Mohamed", "Labouardy", "mohamed@labouardy.com", "labouardy", "AVENUE COLLEGNO BAT A NUM 509", "0664435680");
+		User yazid=createUser(role_user, user2Pic, "Yazid", "Hassaine", "yazid@hassaine.com", "hassaine", "AVENUE COLLEGNO BAT G NUM 01", "0661542675");
+		User user=createUser(role_user, user2Pic, "User", "Test", "user@user.com", "useruser", "AVENUE COLLEGNO BAT G NUM 01", "0763242675");
 		
-		User user=new User();
-		user.setFirstName("Mohamed");
-		user.setLastName("Labouardy");
-		user.setEmail("mohamed@labouardy.com");
-		user.setPassword("lollol");
-		user.setAddress("AVENUE COLLEGNO BAT A NUM 509");
-		user.setPhone("0664435680");
-		user.setRole(role_user);
-		user.setPicture(userPic);
-		userBean.create(user);
+		//Create adverts and set them to Mohamed
+		for(int i=0;i<6;i++){
+			createAdvert(mohamed);
+			System.out.println("Advert "+i+" created");
+		}
 		
-		User admin=new User();
-		admin.setFirstName("Admin");
-		admin.setLastName("Admin");
-		admin.setEmail("admin@labouardy.com");
-		admin.setPassword("admin");
-		admin.setAddress("AVENUE COLLEGNO BAT A NUM 402");
-		admin.setPhone("0674435610");
-		admin.setRole(role_admin);
-		admin.setPicture(userPic);
-		userBean.create(admin);
+		//Create adverts and set them to Yazid
+		for(int i=0;i<3;i++){
+			Advert advert=createAdvert(yazid);
+			System.out.println("Advert "+i+" created");
+			//Add Ads to Mohamed favorite list
+			addToFav(mohamed, advert);
+		}
 		
-		Picture pic1=new Picture();
-		pic1.setLink("409bfeafc2ec360225d9a3e0eac466931449847334595.png");
-		pictureBean.create(pic1);
-		
-		Picture pic2=new Picture();
-		pic2.setLink("409bfeafc2ec360225d9a3e0eac466931449847334595.png");
-		pictureBean.create(pic2);
-		
-		Advert advert=new Advert();
-		advert.setLocation("Rabat");
-		advert.setOwner(user);
-		advert.setType("T1");
-		advert.setDescription("Beautiful T1 near Tram B");
-		advert.setPrice(400.5);
-		advert.getPictures().add(pic1);
-		advert.getPictures().add(pic2);
-		advert.setSurface("200");
-		advert.setCreated_at(new Date());
-		advertBean.createAdvert(advert);
+		//Send Message to Mohamed
+		sendMsg(mohamed);
 		
 	}
-
+	
+	private Role createRole(String name){
+		Role role=new Role();
+		role.setName(name);
+		roleBean.create(role);
+		return role;
+	}
+	
+	private Picture createPicture(String path){
+		Picture pic=new Picture();
+		pic.setLink(path);
+		pictureBean.create(pic);
+		return pic;
+	}
+	
+	private User createUser(Role role, Picture picture, String firstName, String lastName, String email, String password, String address, String phone){
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		User user=new User();
+		user.setFirstName(firstName);
+		user.setLastName(lastName);
+		user.setEmail(email);
+		user.setPassword(passwordEncoder.encode(password));
+		user.setAddress(address);
+		user.setPhone(phone);
+		user.setRole(role);
+		user.setPicture(picture);
+		userBean.create(user);
+		return user;
+	}
+	
+	private void sendMsg(User receiver){
+		List<Advert> adverts=advertBean.getAdverts();
+		Message msg=new Message();
+		msg.setAdvert(adverts.get(0));
+		msg.setEmail("yazid@hassaine.com");
+		msg.setMessage("Hello, I'm interested in your offer");
+		msg.setName("Hassaine Yazid");
+		msg.setPhone("0664435308");
+		msgBean.create(msg);
+		List<Message> messages=receiver.getMessages();
+		if(messages==null)
+			messages=new ArrayList<>();
+		messages.add(msg);
+		receiver.setMessages(messages);
+		userBean.update(receiver);
+		System.out.println("Message has been sent !");	
+	}
+	
+	private Advert createAdvert(User owner){
+		Advert advert=new Advert();
+		advert.setLocation(cities[randInt(cities.length-1,0)]);
+		advert.setOwner(owner);
+		advert.setType(type[randInt(type.length-1,0)]);
+		advert.setDescription("Some description goes here, beautiful flat bla bla bla");
+		advert.setPrice(randInt(2400,1));
+		for(int j=0;j<5;j++){
+			String name="advert"+randInt(1, 50)+".jpg";
+			Picture pic=new Picture();
+			pic.setLink(name);
+			pictureBean.create(pic);
+			advert.getPictures().add(pic);
+			System.out.println("Picture created");
+		}
+		advert.setSurface(String.valueOf(randInt(450,1)));
+		advert.setCreated_at(new Date());
+		advertBean.createAdvert(advert);
+		return advert;
+	}
+	
+	private void addToFav(User user, Advert advert){
+		Favorite favorite=user.getFavorite();
+		if(favorite==null){
+			favorite=new Favorite();
+			List<Advert> adverts=new ArrayList<>();
+			adverts.add(advert);
+			favorite.setAdverts(adverts);
+			favoriteBean.create(favorite);
+		}else{
+			List<Advert> adverts=favorite.getAdverts();
+			if(adverts==null)
+				adverts=new ArrayList<>();
+			adverts.add(advert);
+			favorite.setAdverts(adverts);
+			favoriteBean.update(favorite);
+		}
+		user.setFavorite(favorite);
+		userBean.update(user);
+	}
+	
+	private int randInt(int min, int max) {
+		int randomNum=min + (int)(Math.random() * ((max - min) + 1));
+	    return randomNum;
+	}
 }

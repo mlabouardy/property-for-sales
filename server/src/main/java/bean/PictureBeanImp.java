@@ -4,7 +4,8 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import model.Picture;
+import dao.PictureBean;
+import entity.Picture;
 
 @Stateless
 public class PictureBeanImp implements PictureBean{

@@ -10,6 +10,11 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * Enable cross-origin resource sharing (CORS)
+ * @author mlabouardy
+ *
+ */
 public class CORSFilter implements Filter{
 	
 	@Override

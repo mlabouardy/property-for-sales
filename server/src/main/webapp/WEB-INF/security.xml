@@ -10,6 +10,7 @@
     
     <security:authentication-manager >
         <security:authentication-provider>
+        	<security:password-encoder hash="bcrypt"></security:password-encoder>
              <security:jdbc-user-service data-source-ref="dataSource" 
 			 	authorities-by-username-query="SELECT User.email, Role.name FROM User JOIN Role ON User.role_id=Role.id WHERE User.email = ?"
 				users-by-username-query="SELECT email,password,1 FROM User WHERE email = ?" /> 

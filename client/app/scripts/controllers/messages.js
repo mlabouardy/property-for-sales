@@ -9,8 +9,9 @@
  */
 angular.module('clientApp')
   .controller('MessagesCtrl', function (Contact, $scope, Authentication, $location) {
-    if(Authentication.isConnected()){
-	    Contact.messages()
+    Authentication.isConnected()
+    	.success(function(){
+    		Contact.messages()
 	    	.success(function(data){
 	    		$scope.messages=data;
 	    	});
@@ -29,7 +30,8 @@ angular.module('clientApp')
 	    			toastr.warning(msg, 'Property for sales');
 	    		});
 	    }
-    }else{
-    	$location.path('/login');
-    }
+    	})
+    	.error(function(){
+    		$location.path('/login');
+    	});
   });

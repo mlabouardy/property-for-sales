@@ -28,11 +28,8 @@ angular.module('clientApp')
         role=type;
   		},
   		isConnected:function(){
-  			return connected;
+  			return $http.get(SERVER_URL+'isconnected');
   		},
-      getRole:function(){
-        return role;
-      },
       redirect:function(){
         if(role=='ROLE_USER')
           $location.path('/dashboard');

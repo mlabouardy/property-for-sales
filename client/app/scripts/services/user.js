@@ -46,6 +46,9 @@ angular.module('clientApp')
         },
         forgotPassword:function(email){
            return $http.post(SERVER_URL+'forgotpassword',email);  
+        },
+        countMessages:function(){
+            return $http.get(SERVER_URL+'api/user/messages/count'); 
         }
     }
   });

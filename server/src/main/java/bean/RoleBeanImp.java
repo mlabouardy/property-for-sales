@@ -5,7 +5,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import model.Role;
+import dao.RoleBean;
+import entity.Role;
 
 @Stateless
 public class RoleBeanImp implements RoleBean{

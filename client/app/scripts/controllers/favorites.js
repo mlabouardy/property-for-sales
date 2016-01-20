@@ -9,7 +9,8 @@
  */
 angular.module('clientApp')
   .controller('FavoritesCtrl', function (User, $scope, $location, Authentication) {
-     if(Authentication.isConnected()){
+     Authentication.isConnected()
+     	.success(function(){
      		User.favorites()
 	     	.success(function(data){
 	     		$scope.favorites=data;
@@ -28,8 +29,10 @@ angular.module('clientApp')
 	     				toastr.warning(msg, 'Property for sales');
 	     			});
 	     	}
-	 }else{
-	     $location.path('/login');
-	 }
+     	})
+     	.error(function(){
+     		$location.path('/login');
+     	});
+
      
   });

@@ -7,13 +7,13 @@
 	<persistence-unit name="property-for-sales">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<jta-data-source>myDb</jta-data-source>
-		<class>model.Picture</class>
-		<class>model.Role</class>
-		<class>model.User</class>
-		<class>model.Advert</class>
-		<class>model.Criteria</class>
-		<class>model.Message</class>
-		<class>model.Favorite</class>
+		<class>entity.Picture</class>
+		<class>entity.Role</class>
+		<class>entity.User</class>
+		<class>entity.Advert</class>
+		<class>entity.Criteria</class>
+		<class>entity.Message</class>
+		<class>entity.Favorite</class>
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
 			<property name="hibernate.show_sql" value="true" />

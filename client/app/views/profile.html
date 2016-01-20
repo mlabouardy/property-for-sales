@@ -17,9 +17,12 @@
 				</div>
 			</div>
 		<div class="col-md-6">
-			<div class="panel panel-primary">
-				<div class="panel-heading">Update profile</div>
-				<div class="panel-body">
+			<div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<h5>Profile details</h5>
+				</div>
+
+				<div class="ibox-content">
 					<form>
 						<div class="form-group">
 							<label>First name:</label>
@@ -45,15 +48,18 @@
 							<label>Password:</label>
 							<input type="password" ng-model="profile.password" ng-change="password_changed()" class="form-control">
 						</div>
-						<input type="submit" class="btn btn-success btn-block" value="Update" ng-click="update()">
+						<input type="submit" class="btn btn-primary btn-block" value="Update" ng-click="update()">
 					</form>
 				</div>
 			</div>
 		</div>
 		<div class="col-md-6">
-			<div class="panel panel-primary">
-				<div class="panel-heading">Profile Picture</div>
-				<div class="panel-body">
+			<div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<h5>Profile Picture</h5>
+				</div>
+
+				<div class="ibox-content">
 					<div ng-if="file_upload_error!=undefined">
 						<div class="row">
 							<div class="col-md-12">
@@ -76,6 +82,7 @@
 					</div>
 				</div>
 			</div>
+			
 		</div>
 	</div>
 </div>

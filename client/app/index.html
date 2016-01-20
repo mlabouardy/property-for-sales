@@ -17,14 +17,15 @@
   <link rel="stylesheet" href="styles/custom.css">
   <link rel="stylesheet" href="styles/animate.css">
   <link rel="stylesheet" href="styles/style.css">
+  <link rel="stylesheet" href="http://webapplayers.com/inspinia_admin-v2.4/css/plugins/blueimp/css/blueimp-gallery.min.css">
   <!-- endbuild -->
 </head>
 <body ng-app="clientApp" class="gray-bg">
-  <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0" ng-controller="MenuCtrl">
+  <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
     <div class="navbar-header">
       <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#/"><i class="fa fa-home"></i> </a>
     </div>
-    <div ng-if="!isConnected()">
+    <div ng-if="!isConnected">
       <ul class="nav navbar-top-links navbar-right">
         <li>
           <span class="m-r-sm text-muted welcome-message">Welcome to Property for sales.</span>
@@ -46,7 +47,7 @@
         </li>
       </ul>
     </div>
-    <div ng-if="isConnected()">
+    <div ng-if="isConnected">
       <ul class="nav navbar-top-links navbar-right">
         <li>
           <span class="m-r-sm text-muted welcome-message">Welcome to Property for sales.</span>
@@ -67,8 +68,8 @@
         </a>
       </li>
       <li>
-        <a href="#/messages">
-          <i class="fa fa-comment"></i> Mailbox
+        <a href="#/messages" class="dropdown-toggle count-info">
+          <i class="fa fa-envelope"></i> <span class="label label-primary"><span ng-bind="countMessages"></span></span>
         </a>
       </li>
       <li>
@@ -108,13 +109,13 @@
 
   <!-- build:js({.tmp,app}) scripts/scripts.js -->
   <script src="http://markusslima.github.io/bootstrap-filestyle/js/bootstrap-filestyle.min.js"></script>
+  <script src="http://webapplayers.com/inspinia_admin-v2.4/js/plugins/blueimp/jquery.blueimp-gallery.min.js"></script>
   <script src="http://maps.google.com/maps/api/js?sensor=false"></script> 
   <script src="scripts/constants.js"></script>
   <script src="scripts/app.js"></script>
   <script src="scripts/controllers/main.js"></script>
   <script src="scripts/controllers/register.js"></script>
   <script src="scripts/controllers/login.js"></script>
-  <script src="scripts/controllers/menu.js"></script>
   <script src="scripts/controllers/search.js"></script>
   <script src="scripts/controllers/dashboard.js"></script>
   <script src="scripts/controllers/ad-view.js"></script>
@@ -132,6 +133,7 @@
   <script src="scripts/services/contact.js"></script>
   <script src="scripts/controllers/favorites.js"></script>
   <script src="scripts/controllers/forgot-password.js"></script>
+  <script src="scripts/controllers/test.js"></script>
   <!-- endbuild -->
 </body>
 </html>

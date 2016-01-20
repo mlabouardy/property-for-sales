@@ -9,9 +9,11 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import model.Advert;
-import model.Role;
-import model.User;
+import dao.AdvertBean;
+import dao.UserBean;
+import entity.Advert;
+import entity.Role;
+import entity.User;
 
 @Stateless
 public class UserBeanImp implements UserBean{

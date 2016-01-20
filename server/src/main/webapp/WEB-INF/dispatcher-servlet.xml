@@ -10,16 +10,4 @@
 	<mvc:annotation-driven />
 
 	<context:component-scan base-package="api"></context:component-scan>
-
-	<bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix">
-			<value>/WEB-INF/views/</value>
-		</property>
-		<property name="suffix">
-			<value>.jsp</value>
-		</property>
-	</bean>
-
-	<mvc:resources mapping="/resources/**" location="/resources/" />
 </beans>

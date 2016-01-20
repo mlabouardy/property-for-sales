@@ -95,13 +95,33 @@ angular
         controller: 'ForgotPasswordCtrl',
         title: 'Forgot password'
       })
+      .when('/test', {
+        templateUrl: 'views/test.html',
+        controller: 'TestCtrl',
+        controllerAs: 'test'
+      })
       .otherwise({
         redirectTo: '/'
       });
   })
-  .run(function ($rootScope, $route) {
+  .run(function ($rootScope, $route, Authentication, User) {
         $rootScope.$on("$routeChangeSuccess", function () {
             document.title = $route.current.title;
+            Authentication.isConnected()
+              .success(function(){
+                $rootScope.isConnected=true;
+              })
+              .error(function(){
+                $rootScope.isConnected=false;
+              });
+
+              User.countMessages()
+                .success(function(data){
+                  $rootScope.countMessages=data;
+                });
+            $rootScope.isActive = function (path) {
+              return $location.path() === path;
+            }
         });
     })
  .directive('fileModel', ['$parse', function($parse) {
