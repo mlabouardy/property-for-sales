@@ -1,7 +1,7 @@
 # Developers
 
-Mohamed Labouardy
-Yazid Hassaine 
+Mohamed Labouardy<br/>
+Yazid Hassaine <br/>
 
 # Demo
 
