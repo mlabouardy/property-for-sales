@@ -1,0 +1,175 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<h5>Search criteria <small>Create a custom search criteria.</small></h5>
+				</div>
+
+				<div class="ibox-content">
+					<div class="row">
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Type:</label>
+								<select ng-model="keyword.type" class="form-control">
+									<option ng-repeat="type in types" value="{{type}}">{{type}}</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Surface:</label>
+								<input type="text" ng-model="keyword.surface" class="form-control">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Price:</label>
+								<input type="text" ng-model="keyword.price" class="form-control">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Location:</label>
+								<select ng-model="keyword.location" class="form-control">
+									<option ng-repeat="city in cities" value="{{city}}">{{city}}</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-3">
+							<button class="btn btn-primary btn-block" ng-click="updateCriteria()">Save Criteria</button>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-12">
+			<div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<h5>Create advertisment</h5>
+				</div>
+
+				<div class="ibox-content">
+					<form>
+					<div class="row">
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Type:</label>
+								<select ng-model="type" class="form-control">
+									<option ng-repeat="type in types" value="{{type}}">{{type}}</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Surface:</label>
+								<input type="text" ng-model="surface" class="form-control">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Price:</label>
+								<input type="text" ng-model="price" class="form-control">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Location:</label>
+								<select ng-model="location" class="form-control">
+									<option ng-repeat="city in cities" value="{{city}}">{{city}}</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="form-group">
+								<label>Description:</label>
+								<textarea rows="4" class="form-control" ng-model="description"></textarea>
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="row">
+								<div class="col-md-3">
+									<input type="file" name="file" file-model="img1" class="btn btn-primary"accept="image/*">
+								</div>
+								<div class="col-md-3">
+									<button ng-click="upload(img1)" class="btn btn-success">Upload </button>
+								</div> 
+								<div ng-if="file_upload_error != undefined">
+									<div class="col-md-6">
+										<div class="alert alert-danger">
+											<a class="close" data-dismiss="alert">&times;</a>
+											{{file_upload_error}}
+										</div>
+									</div>
+								</div>
+							</div><br/>
+						</div>
+						<div class="col-md-12">
+							<div class="form-group">	
+								Pictures uploaded: {{files.length}}
+							</div>
+						</div>
+						<div class="col-md-12">
+							<input type="submit" class="btn btn-primary btn-block" value="Create" ng-click="create()">
+						</div>
+					</div>
+				</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">
+			<div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<h5>List of advertisment</h5>
+					<a class="btn btn-warning btn-xs pull-right" ng-click="refresh()"><i class="fa fa-refresh"></i> Refresh</a>
+				</div>
+
+				<div class="ibox-content">
+					<div class="row">
+						<div class="col-md-3" ng-repeat="advert in adverts">
+							<div class="button-group pull-right">
+								<a class="btn btn-warning btn-xs"><i class="fa fa-pencil" ng-click="edit()"></i> Edit</a>
+								<a class="btn btn-danger btn-xs" ng-click="remove({{advert.id}})"><i class="fa fa-trash"></i> Remove</a>
+							</div>
+							<div class="ibox">
+								<div class="ibox-content product-box">
+
+									<div class="product-imitation">
+										<img src="http://51.254.132.239:3000/{{advert.pictures[0].link}}" style="max-width:100%;height:220px">
+									</div>
+									<div class="product-desc">
+										<span class="product-price">
+											${{advert.price}}
+										</span>
+										<small class="text-muted">{{advert.type}}</small>
+										<a href="#/ad-view/{{advert.id}}" class="product-name">{{advert.location}}</a>
+
+
+
+										<div class="small m-t-xs">
+											{{advert.description}}
+										</div>
+										<div class="m-t text-righ">
+
+											<a href="#/ad-view/{{advert.id}}" class="btn btn-xs btn-outline btn-primary">Info <i class="fa fa-long-arrow-right"></i> </a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>

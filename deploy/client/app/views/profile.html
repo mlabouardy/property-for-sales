@@ -1,0 +1,88 @@
+<div class="container-fluid">
+	<div class="row">
+			<div ng-if="msg == 'Success'">
+				<div class="col-md-12">
+					<div class="alert alert-success" role="alert">
+						<a class="close" data-dismiss="alert">&times;</a>
+						Profile successfuly updated !
+					</div>
+				</div>
+			</div>
+			<div ng-if="msg == 'Error'">
+				<div class="col-md-12">
+					<div class="alert alert-danger" role="alert">
+						<a class="close" data-dismiss="alert">&times;</a>
+						Error: something went wrong, please try again !
+					</div>
+				</div>
+			</div>
+		<div class="col-md-6">
+			<div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<h5>Profile details</h5>
+				</div>
+
+				<div class="ibox-content">
+					<form>
+						<div class="form-group">
+							<label>First name:</label>
+							<input type="text" ng-model="profile.firstName" class="form-control">
+						</div>
+						<div class="form-group">
+							<label>Last name:</label>
+							<input type="text" ng-model="profile.lastName" class="form-control">
+						</div>
+						<div class="form-group">
+							<label>Address:</label>
+							<input type="text" ng-model="profile.address" class="form-control">
+						</div>
+						<div class="form-group">
+							<label>Email:</label>
+							<input type="text" ng-model="profile.email" class="form-control">
+						</div>
+						<div class="form-group">
+							<label>Phone:</label>
+							<input type="text" ng-model="profile.phone" class="form-control">
+						</div>
+						<div class="form-group">
+							<label>Password:</label>
+							<input type="password" ng-model="profile.password" ng-change="password_changed()" class="form-control">
+						</div>
+						<input type="submit" class="btn btn-primary btn-block" value="Update" ng-click="update()">
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<h5>Profile Picture</h5>
+				</div>
+
+				<div class="ibox-content">
+					<div ng-if="file_upload_error!=undefined">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="alert alert-danger">
+									{{file_upload_error}}
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-3">
+						<img id="profile" ng-src="http://51.254.132.239:3000/{{profile.picture.link}}" width="100%">
+						</div>
+						<div class="col-md-3">
+							<input type="file" name="file" id="files" file-model="img" accept="image/*">
+						</div>
+						<div class="col-md-3">
+							<button class="btn btn-success" ng-click="upload(img)">Upload</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</div>

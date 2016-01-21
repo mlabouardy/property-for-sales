@@ -1,0 +1,120 @@
+<div class="container-fluid">
+  <div class="col-md-9">
+    <div class="row classWithPad">
+      <!-- <div style="height:450px">
+        <uib-carousel interval="myInterval" no-wrap="noWrapSlides">
+          <uib-slide ng-repeat="slide in advert.pictures" active="slide.active">
+            <img ng-src="http://localhost:3000/{{slide.link}}" style="margin:auto;">
+          </uib-slide>
+        </uib-carousel>
+      </div>-->
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>Advert Gallery <small>Click on picture to zoom.</small></h5>
+        </div>
+
+        <div class="ibox-content">
+          <div class="lightBoxGallery">
+            <a ng-repeat="picture in advert.pictures" href="http://51.254.132.239:3000/{{picture.link}}" title="Image from Unsplash" data-gallery="">
+              <img src="http://51.254.132.239:3000/{{picture.link}}" width="100" height="100">
+            </a>
+            <div id="blueimp-gallery" class="blueimp-gallery">
+              <div class="slides"></div>
+              <h3 class="title"></h3>
+              <a class="prev">‹</a>
+              <a class="next">›</a>
+              <a class="close">×</a>
+              <a class="play-pause"></a>
+              <ol class="indicator"></ol>
+            </div>
+
+          </div> 
+        </div>
+      </div>                     
+    </div>
+    <div class="row classWithPad">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>Description</h5>
+          <div class="button-group pull-right">
+            <span class="label label-primary pull-right">{{advert.type}}</span>
+            <span class="label label-danger pull-right">{{advert.surface}} m<sup>2</sup></span>
+            <span class="label label-success pull-right">{{advert.price}} Euros</span>
+          </div>
+        </div>
+
+        <div class="ibox-content">
+          {{advert.description}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="row classWithPad">
+
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>Owner</h5>
+          <a class="btn btn-success pull-right btn-xs" href="#/contact/{{advert.id}}"><i class="fa fa-envelope-o"></i> Contact</a>
+        </div>
+
+        <div class="ibox-content">
+          <img class="img-circle" ng-src="http://51.254.132.239:3000/{{advert.owner.picture.link}}" width="40px"/>
+          {{advert.owner.firstName}} {{advert.owner.lastName}}<br/><br/>
+          <ul class="list-group">
+            <li class="list-group-item">
+              <i class="fa fa-envelope"></i> {{advert.owner.email}}
+            </li>
+            <li class="list-group-item">
+              <i class="fa fa-phone"></i> {{advert.owner.phone}}
+            </li>
+          </ul>
+        </div>
+
+      </div>
+      
+    </div>
+    <div class="row classWithPad">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>Share advertisment</h5>
+        </div>
+
+        <div class="ibox-content">
+          <div class="social-media">
+            <a href="http://twitter.com/share?url={{pageUrl}}&text=Property for sales" target="_blank" class="share-btn twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+
+            <!-- Google Plus -->
+            <a href="https://plus.google.com/share?url={{pageUrl}}" target="_blank" class="share-btn google-plus">
+              <i class="fa fa-google-plus"></i>
+            </a>
+
+            <!-- Facebook -->
+            <a href="http://www.facebook.com/sharer/sharer.php?u={{pageUrl}}" target="_blank" class="share-btn facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+
+            <a href="mailto:?subject=Propert for sales&body={{pageUrl}}" target="_blank" class="share-btn email">
+              <i class="fa fa-envelope"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="row classWithPad">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>Location</h5>
+        </div>
+
+        <div class="ibox-content">
+          <div id="map-canvas" style="height:300px;width:100%"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

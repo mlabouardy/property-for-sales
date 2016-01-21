@@ -1,0 +1,37 @@
+<div class="middle-box text-center loginscreen   animated fadeInDown">
+	<div>
+		<div ng-if="error != undefined">
+			<div class="alert alert-danger" role="alert">
+				<a class="close" data-dismiss="alert">&times;</a>
+				Registration Failed
+			</div>
+		</div>
+		<h3>Register to Property for Sales</h3>
+		<div class="m-t">
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="First name" ng-model="firstName" required="">
+			</div>
+			<div class="form-group">
+				<input type="text" ng-model="lastName" class="form-control" placeholder="Last name" required="">
+			</div>
+			<div class="form-group">
+				<input type="email" ng-model="email" class="form-control" placeholder="Email" required="">
+			</div>
+			<div class="form-group">
+				<input type="password" ng-model="password" class="form-control" placeholder="Password" required="">
+			</div>
+			<div class="form-group">
+				<input type="password" ng-model="password_check" class="form-control" placeholder="Confirm Passowrd" required="">
+			</div>
+			<div class="form-group">
+				<div class="checkbox i-checks"><label> <input type="checkbox"><i></i> Agree the terms and policy </label></div>
+			</div>
+			<button type="submit" class="btn btn-primary block full-width m-b" ng-click="register()">Register</button>
+
+			<p class="text-muted text-center"><small>Already have an account?</small></p>
+			<a class="btn btn-sm btn-white btn-block" href="#/login">Login</a>
+		</div>
+		<p class="m-t"> <small>Proptery for sales &copy; 2016</small> </p>
+	</div>
+</div>
+
