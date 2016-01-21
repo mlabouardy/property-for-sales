@@ -1,7 +1,5 @@
 package builder;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import entity.User;
 
 public class UserBuilder {
