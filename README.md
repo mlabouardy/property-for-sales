@@ -1,3 +1,24 @@
+# Demo
+
+<table class="tg">
+	<tr>
+		<td>Client</td>
+		<td>http://51.254.132.239:9000/#/</td>
+	</tr>
+	<tr>
+		<td>Server</td>
+		<td>http://51.254.132.239:8081/property-for-sales</td>
+	</tr>
+	<tr>
+		<td>Cloud</td>
+		<td>http://51.254.132.239:3000/</td>
+	</tr>
+	<tr>
+		<td>Database MySQL</td>
+		<td>http://51.254.132.239:3306</td>
+	</tr>
+</table>
+
 # Property-for-sales
 	
 	- Server: EJB/Spring Security/Spring MVC/Mockito/Hiberante/MySQL
@@ -8,6 +29,7 @@
 # Screenshot
 
 ![Alt text](screenshot.png "Screenshot of the client app")
+
 
 # Public:
 	- /adverts -> GET -> List of adverts 
